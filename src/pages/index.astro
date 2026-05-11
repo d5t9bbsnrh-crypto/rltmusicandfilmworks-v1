@@ -1,17 +1,149 @@
 ---
-
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>RLT Music & Filmworks</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        display: flex;
+      }
+
+      .hero {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: black;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        animation: fadeIn 2s ease-in-out;
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0.5)
+        );
+        pointer-events: none;
+      }
+
+      .top-links {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        display: flex;
+        gap: 24px;
+        z-index: 10;
+      }
+
+      .top-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: opacity 0.3s ease;
+      }
+
+      .top-links a:hover {
+        opacity: 0.7;
+      }
+
+      .copyright {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 12px;
+        z-index: 10;
+        letter-spacing: 1px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(1.02);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero img {
+          object-fit: cover;
+        }
+
+        .top-links {
+          flex-direction: column;
+          gap: 12px;
+          top: 20px;
+          left: 20px;
+        }
+
+        .top-links a {
+          font-size: 13px;
+        }
+
+        .copyright {
+          font-size: 10px;
+          padding: 0 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero">
+      <img
+        src="/images/rlthomepage.png"
+        alt="RLT Music & Filmworks"
+      />
+
+      <div class="overlay"></div>
+
+      <nav class="top-links">
+        <a href="/music">Music</a>
+        <a href="/films">Films</a>
+        <a href="/store">Store</a>
+        <a href="/contact">Contact</a>
+      </nav>
+
+      <div class="copyright">
+        © 2026 RLT Music & Filmworks. All Rights Reserved.
+      </div>
+    </section>
+  </body>
 </html>
+Stack Trace
