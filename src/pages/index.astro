@@ -14,176 +14,114 @@
         box-sizing: border-box;
       }
 
-      html,
       body {
-        width: 100%;
-        min-height: 100%;
-        background: #000;
+        background: black;
+        color: white;
         font-family: Arial, Helvetica, sans-serif;
         overflow-x: hidden;
       }
 
       .page {
         width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        background: #000;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
-      .hero-wrapper {
+      /* NAVIGATION */
+
+      .nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        padding: 24px 12px;
+        flex-wrap: wrap;
         position: relative;
-        width: 100%;
+        z-index: 10;
       }
 
-      .hero-image {
+      .nav a {
+        color: gold;
+        text-decoration: none;
+        border: 1px solid rgba(255, 215, 0, 0.55);
+        padding: 12px 20px;
+        font-size: 18px;
+        letter-spacing: 2px;
+        background: rgba(0, 0, 0, 0.65);
+        border-radius: 6px;
+        transition: 0.25s ease;
+      }
+
+      .nav a:hover {
+        background: gold;
+        color: black;
+      }
+
+      /* HERO IMAGE */
+
+      .hero {
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      .hero img {
+        width: 92%;
+        max-width: 1400px;
+        height: auto;
+        object-fit: contain;
         display: block;
       }
 
-      .hotspot {
-        position: absolute;
-        display: block;
-        z-index: 20;
-        background: transparent;
-        text-indent: -9999px;
-        overflow: hidden;
-      }
+      /* MOBILE */
 
-      .music-link {
-        top: 2%;
-        left: 23%;
-        width: 8%;
-        height: 5%;
-      }
+      @media (max-width: 768px) {
+        .nav {
+          gap: 8px;
+          padding: 14px 8px;
+        }
 
-      .film-link {
-        top: 2%;
-        left: 32%;
-        width: 7%;
-        height: 5%;
-      }
+        .nav a {
+          font-size: 11px;
+          padding: 9px 10px;
+          letter-spacing: 1px;
+        }
 
-      .store-link {
-        top: 2%;
-        left: 41%;
-        width: 8%;
-        height: 5%;
-      }
-
-      .artists-link {
-        top: 2%;
-        left: 50%;
-        width: 9%;
-        height: 5%;
-      }
-
-      .ozone-link {
-        top: 2%;
-        left: 61%;
-        width: 8%;
-        height: 5%;
-      }
-
-      .contact-link {
-        top: 2%;
-        left: 71%;
-        width: 10%;
-        height: 5%;
-      }
-
-      .youtube-link {
-        top: 2%;
-        right: 13.5%;
-        width: 3%;
-        height: 5%;
-      }
-
-      .instagram-link {
-        top: 2%;
-        right: 9.5%;
-        width: 3%;
-        height: 5%;
-      }
-
-      .facebook-link {
-        top: 2%;
-        right: 5.5%;
-        width: 3%;
-        height: 5%;
-      }
-
-      .x-link {
-        top: 2%;
-        right: 1.8%;
-        width: 3%;
-        height: 5%;
-      }
-
-      .explore-link {
-        top: 41%;
-        left: 39%;
-        width: 20%;
-        height: 7%;
-      }
-
-      .updates-link {
-        top: 45%;
-        right: 8%;
-        width: 26%;
-        height: 7%;
-      }
-
-      .music-card-link {
-        top: 65%;
-        left: 3%;
-        width: 12%;
-        height: 5%;
-      }
-
-      .film-card-link {
-        top: 65%;
-        left: 35%;
-        width: 12%;
-        height: 5%;
-      }
-
-      .store-card-link {
-        top: 65%;
-        left: 67%;
-        width: 12%;
-        height: 5%;
+        .hero img {
+          width: 96%;
+        }
       }
     </style>
   </head>
 
   <body>
-    <main class="page">
-      <section class="hero-wrapper">
+    <div class="page">
+
+      <!-- NAVIGATION -->
+
+      <nav class="nav">
+        <a href="/">HOME</a>
+        <a href="/music">MUSIC</a>
+        <a href="/films">FILMS</a>
+        <a href="/store">STORE</a>
+        <a href="/contacts">CONTACT</a>
+        <a href="/cart">CART</a>
+      </nav>
+
+      <!-- HOMEPAGE IMAGE -->
+
+      <section class="hero">
         <img
           src="/images/rlthomepage.png"
-          alt="RLT Music and Filmworks"
-          class="hero-image"
+          alt="RLT Music & Filmworks"
         />
-
-        <a href="/music" class="hotspot music-link">Music</a>
-        <a href="/film" class="hotspot film-link">Film</a>
-        <a href="/store" class="hotspot store-link">Store</a>
-        <a href="/artists" class="hotspot artists-link">Artists</a>
-        <a href="/ozone" class="hotspot ozone-link">Ozone</a>
-        <a href="/contact" class="hotspot contact-link">Contact</a>
-
-        <a href="https://youtube.com" target="_blank" class="hotspot youtube-link">YouTube</a>
-        <a href="https://instagram.com" target="_blank" class="hotspot instagram-link">Instagram</a>
-        <a href="https://facebook.com" target="_blank" class="hotspot facebook-link">Facebook</a>
-        <a href="https://x.com" target="_blank" class="hotspot x-link">X</a>
-
-        <a href="/music" class="hotspot explore-link">Explore Our World</a>
-        <a href="/ozone" class="hotspot updates-link">Stay Connected For Updates</a>
-
-        <a href="/music" class="hotspot music-card-link">Explore Music</a>
-        <a href="/film" class="hotspot film-card-link">View Films</a>
-        <a href="/store" class="hotspot store-card-link">Shop Now</a>
       </section>
-    </main>
+
+    </div>
   </body>
 </html>

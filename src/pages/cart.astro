@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RLT Store</title>
+    <title>RLT Shopping Cart</title>
 
     <style>
       * {
@@ -58,7 +58,7 @@
         color: black;
       }
 
-      /* STORE BANNER */
+      /* CART BANNER */
 
       .hero {
         width: 100%;
@@ -66,6 +66,7 @@
         justify-content: center;
         align-items: center;
         margin-top: 20px;
+        padding-bottom: 30px;
       }
 
       .hero img {
@@ -74,6 +75,55 @@
         height: auto;
         object-fit: contain;
         display: block;
+      }
+
+      /* CART SECTION */
+
+      .cart-section {
+        width: 92%;
+        max-width: 1200px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .cart-box {
+        width: 100%;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        border-radius: 10px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.03);
+        text-align: center;
+      }
+
+      .cart-box h1 {
+        color: gold;
+        font-size: 42px;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+      }
+
+      .cart-box p {
+        color: #ddd;
+        font-size: 20px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      .button {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        background: gold;
+        padding: 14px 24px;
+        border-radius: 6px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: 0.25s ease;
+      }
+
+      .button:hover {
+        opacity: 0.85;
       }
 
       /* MOBILE */
@@ -93,6 +143,18 @@
         .hero img {
           width: 96%;
         }
+
+        .cart-box {
+          padding: 24px;
+        }
+
+        .cart-box h1 {
+          font-size: 28px;
+        }
+
+        .cart-box p {
+          font-size: 16px;
+        }
       }
     </style>
   </head>
@@ -111,13 +173,35 @@
         <a href="/cart">CART</a>
       </nav>
 
-      <!-- STORE IMAGE -->
+      <!-- CART IMAGE -->
 
       <section class="hero">
         <img
-          src="/images/storebanner.PNG"
-          alt="RLT Store"
+          src="/images/cartbanner.png"
+          alt="RLT Shopping Cart"
         />
+      </section>
+
+      <!-- CART CONTENT -->
+
+      <section class="cart-section">
+
+        <div class="cart-box">
+
+          <h1>SHOPPING CART</h1>
+
+          <p>
+            Your cart is currently empty.
+            Continue shopping to add products,
+            music, apparel, films, and collectibles.
+          </p>
+
+          <a class="button" href="/store">
+            RETURN TO STORE
+          </a>
+
+        </div>
+
       </section>
 
     </div>
