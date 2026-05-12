@@ -2,208 +2,581 @@
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RLT Shopping Cart</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RLT Shopping Cart</title>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#000;
+      color:white;
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    .page{
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-bottom:60px;
+    }
+
+    /* NAVIGATION */
+
+    .nav{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      padding:24px 12px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      color:gold;
+      text-decoration:none;
+      border:1px solid rgba(255,215,0,.55);
+      padding:12px 20px;
+      font-size:18px;
+      letter-spacing:2px;
+      border-radius:6px;
+      transition:.25s ease;
+    }
+
+    .nav a:hover{
+      background:gold;
+      color:black;
+    }
+
+    /* HERO */
+
+    .hero{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      margin-top:10px;
+    }
+
+    .hero img{
+      width:92%;
+      max-width:1400px;
+      height:auto;
+      display:block;
+    }
+
+    /* CART LAYOUT */
+
+    .cart-wrapper{
+      width:92%;
+      max-width:1300px;
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:30px;
+      margin-top:40px;
+    }
+
+    .cart-items,
+    .summary{
+      border:1px solid rgba(255,215,0,.2);
+      background:rgba(255,255,255,.03);
+      border-radius:10px;
+      padding:30px;
+    }
+
+    .cart-title{
+      color:gold;
+      font-size:38px;
+      letter-spacing:2px;
+      margin-bottom:30px;
+    }
+
+    /* ITEM */
+
+    .cart-item{
+      display:grid;
+      grid-template-columns:120px 1fr 100px 140px;
+      gap:20px;
+      align-items:center;
+      padding:24px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .cart-item img{
+      width:100%;
+      border-radius:8px;
+    }
+
+    .item-info h3{
+      color:gold;
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .item-info p{
+      color:#ccc;
+      margin-bottom:6px;
+      line-height:1.4;
+    }
+
+    .price{
+      font-size:24px;
+      color:white;
+      text-align:center;
+    }
+
+    /* QUANTITY */
+
+    .qty-box{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+    }
+
+    .qty-btn{
+      width:34px;
+      height:34px;
+      border:none;
+      background:gold;
+      color:black;
+      font-size:22px;
+      font-weight:bold;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    .qty{
+      font-size:22px;
+      min-width:20px;
+      text-align:center;
+    }
+
+    /* SUMMARY */
+
+    .summary h2{
+      color:gold;
+      font-size:32px;
+      margin-bottom:30px;
+    }
+
+    .summary-row,
+    .summary-total{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:22px;
+      font-size:20px;
+    }
+
+    .summary-total{
+      color:gold;
+      font-size:30px;
+      border-top:1px solid rgba(255,255,255,.15);
+      padding-top:22px;
+      margin-top:20px;
+    }
+
+    .checkout-btn{
+      width:100%;
+      border:none;
+      background:gold;
+      color:black;
+      padding:18px;
+      font-size:20px;
+      font-weight:bold;
+      border-radius:6px;
+      margin-top:20px;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .checkout-btn:hover{
+      opacity:.85;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:900px){
+
+      .cart-wrapper{
+        grid-template-columns:1fr;
       }
 
-      body {
-        background: black;
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-        overflow-x: hidden;
+      .cart-item{
+        grid-template-columns:1fr;
+        text-align:center;
       }
 
-      .page {
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 40px;
+      .item-info h3{
+        font-size:22px;
       }
 
-      /* NAVIGATION */
-
-      .nav {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 18px;
-        padding: 24px 12px;
-        flex-wrap: wrap;
+      .nav{
+        gap:8px;
       }
 
-      .nav a {
-        color: gold;
-        text-decoration: none;
-        border: 1px solid rgba(255, 215, 0, 0.55);
-        padding: 12px 20px;
-        font-size: 18px;
-        letter-spacing: 2px;
-        background: rgba(0, 0, 0, 0.65);
-        border-radius: 6px;
-        transition: 0.25s ease;
+      .nav a{
+        font-size:12px;
+        padding:9px 12px;
       }
 
-      .nav a:hover {
-        background: gold;
-        color: black;
-      }
+    }
 
-      /* CART BANNER */
+  </style>
+</head>
 
-      .hero {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        padding-bottom: 30px;
-      }
+<body>
 
-      .hero img {
-        width: 92%;
-        max-width: 1400px;
-        height: auto;
-        object-fit: contain;
-        display: block;
-      }
+<div class="page">
 
-      /* CART SECTION */
+  <!-- NAV -->
 
-      .cart-section {
-        width: 92%;
-        max-width: 1200px;
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-      }
+  <nav class="nav">
+    <a href="/">HOME</a>
+    <a href="/music">MUSIC</a>
+    <a href="/films">FILMS</a>
+    <a href="/store">STORE</a>
+    <a href="/contacts">CONTACT</a>
+    <a href="/cart">CART</a>
+  </nav>
 
-      .cart-box {
-        width: 100%;
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        border-radius: 10px;
-        padding: 40px;
-        background: rgba(255, 255, 255, 0.03);
-        text-align: center;
-      }
+  <!-- HERO -->
 
-      .cart-box h1 {
-        color: gold;
-        font-size: 42px;
-        margin-bottom: 20px;
-        letter-spacing: 2px;
-      }
+  <section class="hero">
+    <img
+      src="/images/cartbanner.png"
+      alt="RLT Shopping Cart"
+    />
+  </section>
 
-      .cart-box p {
-        color: #ddd;
-        font-size: 20px;
-        margin-bottom: 30px;
-        line-height: 1.6;
-      }
+  <!-- CART -->
 
-      .button {
-        display: inline-block;
-        text-decoration: none;
-        color: black;
-        background: gold;
-        padding: 14px 24px;
-        border-radius: 6px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        transition: 0.25s ease;
-      }
+  <div class="cart-wrapper">
 
-      .button:hover {
-        opacity: 0.85;
-      }
+    <!-- LEFT -->
 
-      /* MOBILE */
+    <div class="cart-items">
 
-      @media (max-width: 768px) {
-        .nav {
-          gap: 8px;
-          padding: 14px 8px;
-        }
+      <h1 class="cart-title">
+        SHOPPING CART
+      </h1>
 
-        .nav a {
-          font-size: 11px;
-          padding: 9px 10px;
-          letter-spacing: 1px;
-        }
+      <!-- ITEM 1 -->
 
-        .hero img {
-          width: 96%;
-        }
+      <div class="cart-item">
 
-        .cart-box {
-          padding: 24px;
-        }
-
-        .cart-box h1 {
-          font-size: 28px;
-        }
-
-        .cart-box p {
-          font-size: 16px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="page">
-
-      <!-- NAVIGATION -->
-
-      <nav class="nav">
-        <a href="/">HOME</a>
-        <a href="/music">MUSIC</a>
-        <a href="/films">FILMS</a>
-        <a href="/store">STORE</a>
-        <a href="/contacts">CONTACT</a>
-        <a href="/cart">CART</a>
-      </nav>
-
-      <!-- CART IMAGE -->
-
-      <section class="hero">
         <img
-          src="/images/cartbanner.png"
-          alt="RLT Shopping Cart"
+          src="/images/vinyl.png"
+          alt="RLT Legacy"
         />
-      </section>
 
-      <!-- CART CONTENT -->
+        <div class="item-info">
+          <h3>RLT LEGACY</h3>
+          <p>Limited Edition Vinyl</p>
+          <p>Format: Vinyl</p>
+        </div>
 
-      <section class="cart-section">
+        <div
+          class="price"
+          id="total-0"
+        >
+          $4.99
+        </div>
 
-        <div class="cart-box">
+        <div class="qty-box">
+          <button
+            class="qty-btn"
+            onclick="changeQty(0,-1)"
+          >
+            -
+          </button>
 
-          <h1>SHOPPING CART</h1>
+          <span
+            class="qty"
+            id="qty-0"
+          >
+            1
+          </span>
 
-          <p>
-            Your cart is currently empty.
-            Continue shopping to add products,
-            music, apparel, films, and collectibles.
-          </p>
+          <button
+            class="qty-btn"
+            onclick="changeQty(0,1)"
+          >
+            +
+          </button>
+        </div>
 
-          <a class="button" href="/store">
-            RETURN TO STORE
-          </a>
+      </div>
+
+      <!-- ITEM 2 -->
+
+      <div class="cart-item">
+
+        <img
+          src="/images/shirt.png"
+          alt="RLT Shirt"
+        />
+
+        <div class="item-info">
+          <h3>RLT CLASSIC LOGO TEE</h3>
+          <p>Premium Cotton</p>
+          <p>Size: Large | Color: Black</p>
+        </div>
+
+        <div
+          class="price"
+          id="total-1"
+        >
+          $24.99
+        </div>
+
+        <div class="qty-box">
+
+          <button
+            class="qty-btn"
+            onclick="changeQty(1,-1)"
+          >
+            -
+          </button>
+
+          <span
+            class="qty"
+            id="qty-1"
+          >
+            1
+          </span>
+
+          <button
+            class="qty-btn"
+            onclick="changeQty(1,1)"
+          >
+            +
+          </button>
 
         </div>
 
-      </section>
+      </div>
+
+      <!-- ITEM 3 -->
+
+      <div class="cart-item">
+
+        <img
+          src="/images/dvd.png"
+          alt="RLT Film Works"
+        />
+
+        <div class="item-info">
+          <h3>RLT FILM WORKS</h3>
+          <p>Behind-the-Scenes Documentary</p>
+          <p>Format: DVD</p>
+        </div>
+
+        <div
+          class="price"
+          id="total-2"
+        >
+          $19.99
+        </div>
+
+        <div class="qty-box">
+
+          <button
+            class="qty-btn"
+            onclick="changeQty(2,-1)"
+          >
+            -
+          </button>
+
+          <span
+            class="qty"
+            id="qty-2"
+          >
+            1
+          </span>
+
+          <button
+            class="qty-btn"
+            onclick="changeQty(2,1)"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
-  </body>
+
+    <!-- SUMMARY -->
+
+    <div class="summary">
+
+      <h2>
+        CART SUMMARY
+      </h2>
+
+      <div class="summary-row">
+        <span id="subtotal-label">
+          SUBTOTAL (3 ITEMS)
+        </span>
+
+        <span id="subtotal">
+          $49.97
+        </span>
+      </div>
+
+      <div class="summary-row">
+        <span>SHIPPING</span>
+
+        <span id="shipping">
+          $6.99
+        </span>
+      </div>
+
+      <div class="summary-row">
+        <span>TAX (EST.)</span>
+
+        <span id="tax">
+          $3.50
+        </span>
+      </div>
+
+      <div class="summary-total">
+        <span>TOTAL</span>
+
+        <span id="grand-total">
+          $60.46
+        </span>
+      </div>
+
+      <button class="checkout-btn">
+        PROCEED TO CHECKOUT
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
+
+<script>
+
+const items = [
+
+  {
+    price: 4.99,
+    qty: 1
+  },
+
+  {
+    price: 24.99,
+    qty: 1
+  },
+
+  {
+    price: 19.99,
+    qty: 1
+  }
+
+];
+
+const shipping = 6.99;
+
+const taxRate = 0.07;
+
+function money(value){
+
+  return "$" + value.toFixed(2);
+
+}
+
+function changeQty(index, amount){
+
+  items[index].qty += amount;
+
+  if(items[index].qty < 0){
+
+    items[index].qty = 0;
+
+  }
+
+  updateCart();
+
+}
+
+function updateCart(){
+
+  let subtotal = 0;
+
+  let totalItems = 0;
+
+  items.forEach((item,index)=>{
+
+    const itemTotal =
+      item.price * item.qty;
+
+    subtotal += itemTotal;
+
+    totalItems += item.qty;
+
+    document.getElementById(
+      `qty-${index}`
+    ).textContent = item.qty;
+
+    document.getElementById(
+      `total-${index}`
+    ).textContent = money(itemTotal);
+
+  });
+
+  const tax =
+    subtotal * taxRate;
+
+  const grandTotal =
+    subtotal + shipping + tax;
+
+  document.getElementById(
+    "subtotal-label"
+  ).textContent =
+    `SUBTOTAL (${totalItems} ITEMS)`;
+
+  document.getElementById(
+    "subtotal"
+  ).textContent =
+    money(subtotal);
+
+  document.getElementById(
+    "tax"
+  ).textContent =
+    money(tax);
+
+  document.getElementById(
+    "shipping"
+  ).textContent =
+    money(shipping);
+
+  document.getElementById(
+    "grand-total"
+  ).textContent =
+    money(grandTotal);
+
+}
+
+updateCart();
+
+</script>
+
+</body>
 </html>
