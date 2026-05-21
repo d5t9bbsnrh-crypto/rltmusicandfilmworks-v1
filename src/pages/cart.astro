@@ -2,581 +2,422 @@
 ---
 
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RLT Shopping Cart</title>
+  <head>
+    <meta charset="UTF-8" />
 
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    body{
-      background:#000;
-      color:white;
-      font-family:Arial, Helvetica, sans-serif;
-      overflow-x:hidden;
-    }
-
-    .page{
-      width:100%;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding-bottom:60px;
-    }
-
-    /* NAVIGATION */
-
-    .nav{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      padding:24px 12px;
-      flex-wrap:wrap;
-    }
-
-    .nav a{
-      color:gold;
-      text-decoration:none;
-      border:1px solid rgba(255,215,0,.55);
-      padding:12px 20px;
-      font-size:18px;
-      letter-spacing:2px;
-      border-radius:6px;
-      transition:.25s ease;
-    }
-
-    .nav a:hover{
-      background:gold;
-      color:black;
-    }
-
-    /* HERO */
-
-    .hero{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      margin-top:10px;
-    }
-
-    .hero img{
-      width:92%;
-      max-width:1400px;
-      height:auto;
-      display:block;
-    }
-
-    /* CART LAYOUT */
-
-    .cart-wrapper{
-      width:92%;
-      max-width:1300px;
-      display:grid;
-      grid-template-columns:2fr 1fr;
-      gap:30px;
-      margin-top:40px;
-    }
-
-    .cart-items,
-    .summary{
-      border:1px solid rgba(255,215,0,.2);
-      background:rgba(255,255,255,.03);
-      border-radius:10px;
-      padding:30px;
-    }
-
-    .cart-title{
-      color:gold;
-      font-size:38px;
-      letter-spacing:2px;
-      margin-bottom:30px;
-    }
-
-    /* ITEM */
-
-    .cart-item{
-      display:grid;
-      grid-template-columns:120px 1fr 100px 140px;
-      gap:20px;
-      align-items:center;
-      padding:24px 0;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .cart-item img{
-      width:100%;
-      border-radius:8px;
-    }
-
-    .item-info h3{
-      color:gold;
-      font-size:24px;
-      margin-bottom:10px;
-    }
-
-    .item-info p{
-      color:#ccc;
-      margin-bottom:6px;
-      line-height:1.4;
-    }
-
-    .price{
-      font-size:24px;
-      color:white;
-      text-align:center;
-    }
-
-    /* QUANTITY */
-
-    .qty-box{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:12px;
-    }
-
-    .qty-btn{
-      width:34px;
-      height:34px;
-      border:none;
-      background:gold;
-      color:black;
-      font-size:22px;
-      font-weight:bold;
-      border-radius:4px;
-      cursor:pointer;
-    }
-
-    .qty{
-      font-size:22px;
-      min-width:20px;
-      text-align:center;
-    }
-
-    /* SUMMARY */
-
-    .summary h2{
-      color:gold;
-      font-size:32px;
-      margin-bottom:30px;
-    }
-
-    .summary-row,
-    .summary-total{
-      display:flex;
-      justify-content:space-between;
-      margin-bottom:22px;
-      font-size:20px;
-    }
-
-    .summary-total{
-      color:gold;
-      font-size:30px;
-      border-top:1px solid rgba(255,255,255,.15);
-      padding-top:22px;
-      margin-top:20px;
-    }
-
-    .checkout-btn{
-      width:100%;
-      border:none;
-      background:gold;
-      color:black;
-      padding:18px;
-      font-size:20px;
-      font-weight:bold;
-      border-radius:6px;
-      margin-top:20px;
-      cursor:pointer;
-      transition:.25s ease;
-    }
-
-    .checkout-btn:hover{
-      opacity:.85;
-    }
-
-    /* MOBILE */
-
-    @media(max-width:900px){
-
-      .cart-wrapper{
-        grid-template-columns:1fr;
-      }
-
-      .cart-item{
-        grid-template-columns:1fr;
-        text-align:center;
-      }
-
-      .item-info h3{
-        font-size:22px;
-      }
-
-      .nav{
-        gap:8px;
-      }
-
-      .nav a{
-        font-size:12px;
-        padding:9px 12px;
-      }
-
-    }
-
-  </style>
-</head>
-
-<body>
-
-<div class="page">
-
-  <!-- NAV -->
-
-  <nav class="nav">
-    <a href="/">HOME</a>
-    <a href="/music">MUSIC</a>
-    <a href="/films">FILMS</a>
-    <a href="/store">STORE</a>
-    <a href="/contacts">CONTACT</a>
-    <a href="/cart">CART</a>
-  </nav>
-
-  <!-- HERO -->
-
-  <section class="hero">
-    <img
-      src="/images/cartbanner.png"
-      alt="RLT Shopping Cart"
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
     />
-  </section>
 
-  <!-- CART -->
+    <title>OZONE Cart</title>
 
-  <div class="cart-wrapper">
+    <style>
 
-    <!-- LEFT -->
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    <div class="cart-items">
+      body {
+        background: #000;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+        color: white;
+      }
 
-      <h1 class="cart-title">
-        SHOPPING CART
-      </h1>
+      .cart-page {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
+      }
 
-      <!-- ITEM 1 -->
+      /* HERO IMAGE */
 
-      <div class="cart-item">
+      .hero-image {
+        position: absolute;
+        inset: 0;
 
-        <img
-          src="/images/vinyl.png"
-          alt="RLT Legacy"
-        />
+        width: 100%;
+        height: 100%;
 
-        <div class="item-info">
-          <h3>RLT LEGACY</h3>
-          <p>Limited Edition Vinyl</p>
-          <p>Format: Vinyl</p>
-        </div>
+        object-fit: contain;
 
-        <div
-          class="price"
-          id="total-0"
+        z-index: 1;
+
+        opacity: 0.92;
+      }
+
+      /* OVERLAY */
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.35),
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.55)
+          );
+
+        z-index: 2;
+      }
+
+      /* UNDER CONSTRUCTION */
+
+      .construction-banner {
+        position: absolute;
+
+        top: 48%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        z-index: 95;
+
+        padding: 24px 46px;
+
+        border-radius: 24px;
+
+        background: rgba(0,0,0,0.58);
+
+        border: 1px solid rgba(212,175,55,0.35);
+
+        backdrop-filter: blur(12px);
+
+        color: #d4af37;
+
+        font-size: 42px;
+        font-weight: bold;
+
+        letter-spacing: 6px;
+
+        text-shadow:
+          0 0 18px rgba(212,175,55,0.55);
+
+        box-shadow:
+          0 0 30px rgba(0,0,0,0.45);
+      }
+
+      /* TOP NAV */
+
+      .top-nav {
+        position: absolute;
+
+        top: 18px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 48px;
+
+        padding: 14px 34px;
+
+        background: rgba(0,0,0,0.18);
+
+        border: 1px solid rgba(255,255,255,0.06);
+
+        border-radius: 18px;
+
+        backdrop-filter: blur(10px);
+
+        z-index: 100;
+      }
+
+      .top-nav a {
+        color: #d4af37;
+
+        text-decoration: none;
+
+        font-size: 20px;
+        font-weight: bold;
+
+        letter-spacing: 3px;
+
+        transition: 0.3s ease;
+      }
+
+      .top-nav a:hover {
+        color: white;
+      }
+
+      /* ACTIVE CART LINK */
+
+      .top-nav .active {
+        color: white;
+      }
+
+      /* DOWNLOAD BUTTON */
+
+      .download-button {
+        position: absolute;
+
+        top: 18px;
+        right: 3%;
+
+        z-index: 100;
+      }
+
+      .download-button a {
+        display: inline-block;
+
+        padding: 16px 34px;
+
+        border-radius: 16px;
+
+        background: #d4af37;
+
+        color: #000;
+
+        text-decoration: none;
+
+        font-size: 18px;
+        font-weight: bold;
+
+        letter-spacing: 2px;
+
+        box-shadow:
+          0 0 24px rgba(212,175,55,0.45);
+
+        transition: 0.3s ease;
+      }
+
+      .download-button a:hover {
+        transform: scale(1.03);
+
+        box-shadow:
+          0 0 34px rgba(212,175,55,0.75);
+      }
+
+      /* COMING SOON SECTION */
+
+      .coming-soon {
+        position: absolute;
+
+        bottom: 10%;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        display: flex;
+
+        gap: 28px;
+
+        z-index: 90;
+      }
+
+      .coming-card {
+        width: 220px;
+
+        padding: 22px 18px;
+
+        text-align: center;
+
+        border-radius: 22px;
+
+        background: rgba(0,0,0,0.45);
+
+        border: 1px solid rgba(212,175,55,0.28);
+
+        backdrop-filter: blur(10px);
+
+        box-shadow:
+          0 0 20px rgba(0,0,0,0.35);
+      }
+
+      .coming-card h2 {
+        color: #d4af37;
+
+        font-size: 24px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 12px;
+      }
+
+      .coming-card p {
+        color: white;
+
+        font-size: 14px;
+
+        letter-spacing: 2px;
+      }
+
+      /* COPYRIGHT */
+
+      .copyright {
+        position: absolute;
+
+        bottom: 18px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        color: rgba(255,255,255,0.85);
+
+        font-size: 15px;
+
+        letter-spacing: 1px;
+
+        z-index: 100;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 768px) {
+
+        .construction-banner {
+
+          width: 90%;
+
+          text-align: center;
+
+          font-size: 24px;
+
+          letter-spacing: 3px;
+
+          padding: 20px;
+        }
+
+        .top-nav {
+
+          gap: 18px;
+
+          padding: 12px 18px;
+        }
+
+        .top-nav a {
+
+          font-size: 13px;
+
+          letter-spacing: 2px;
+        }
+
+        .download-button {
+
+          top: auto;
+
+          bottom: 180px;
+
+          right: 50%;
+
+          transform: translateX(50%);
+        }
+
+        .download-button a {
+
+          font-size: 13px;
+
+          padding: 14px 20px;
+        }
+
+        .coming-soon {
+
+          flex-direction: column;
+
+          bottom: 8%;
+
+          gap: 14px;
+        }
+
+        .coming-card {
+
+          width: 240px;
+        }
+
+        .copyright {
+
+          font-size: 11px;
+
+          width: 100%;
+
+          text-align: center;
+        }
+
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="cart-page">
+
+      <!-- HERO IMAGE -->
+
+      <img
+        src="/images/hero/logos/Ozone-cart.png"
+        alt="OZONE Cart"
+        class="hero-image"
+      />
+
+      <!-- OVERLAY -->
+
+      <div class="overlay"></div>
+
+      <!-- UNDER CONSTRUCTION -->
+
+      <div class="construction-banner">
+        UNDER CONSTRUCTION
+      </div>
+
+      <!-- TOP NAVIGATION -->
+
+      <nav class="top-nav">
+        <a href="/">HOME</a>
+        <a href="/store">STORE</a>
+        <a href="/cart" class="active">CART</a>
+      </nav>
+
+      <!-- DOWNLOAD BUTTON -->
+
+      <div class="download-button">
+        <a
+          href="https://buy.stripe.com/00w3cxdsR90U1eI2xGcfK03"
+          target="_blank"
         >
-          $4.99
+          DOWNLOAD NOW • $4.99
+        </a>
+      </div>
+
+      <!-- COMING SOON -->
+
+      <div class="coming-soon">
+
+        <div class="coming-card">
+          <h2>CDs</h2>
+          <p>COMING SOON</p>
         </div>
 
-        <div class="qty-box">
-          <button
-            class="qty-btn"
-            onclick="changeQty(0,-1)"
-          >
-            -
-          </button>
+        <div class="coming-card">
+          <h2>VINYL</h2>
+          <p>COMING SOON</p>
+        </div>
 
-          <span
-            class="qty"
-            id="qty-0"
-          >
-            1
-          </span>
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(0,1)"
-          >
-            +
-          </button>
+        <div class="coming-card">
+          <h2>MERCHANDISE</h2>
+          <p>COMING SOON</p>
         </div>
 
       </div>
 
-      <!-- ITEM 2 -->
+      <!-- COPYRIGHT -->
 
-      <div class="cart-item">
-
-        <img
-          src="/images/shirt.png"
-          alt="RLT Shirt"
-        />
-
-        <div class="item-info">
-          <h3>RLT CLASSIC LOGO TEE</h3>
-          <p>Premium Cotton</p>
-          <p>Size: Large | Color: Black</p>
-        </div>
-
-        <div
-          class="price"
-          id="total-1"
-        >
-          $24.99
-        </div>
-
-        <div class="qty-box">
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(1,-1)"
-          >
-            -
-          </button>
-
-          <span
-            class="qty"
-            id="qty-1"
-          >
-            1
-          </span>
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(1,1)"
-          >
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-      <!-- ITEM 3 -->
-
-      <div class="cart-item">
-
-        <img
-          src="/images/dvd.png"
-          alt="RLT Film Works"
-        />
-
-        <div class="item-info">
-          <h3>RLT FILM WORKS</h3>
-          <p>Behind-the-Scenes Documentary</p>
-          <p>Format: DVD</p>
-        </div>
-
-        <div
-          class="price"
-          id="total-2"
-        >
-          $19.99
-        </div>
-
-        <div class="qty-box">
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(2,-1)"
-          >
-            -
-          </button>
-
-          <span
-            class="qty"
-            id="qty-2"
-          >
-            1
-          </span>
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(2,1)"
-          >
-            +
-          </button>
-
-        </div>
-
+      <div class="copyright">
+        © 2026 RLT Music & Filmworks. All Rights Reserved.
       </div>
 
     </div>
 
-    <!-- SUMMARY -->
-
-    <div class="summary">
-
-      <h2>
-        CART SUMMARY
-      </h2>
-
-      <div class="summary-row">
-        <span id="subtotal-label">
-          SUBTOTAL (3 ITEMS)
-        </span>
-
-        <span id="subtotal">
-          $49.97
-        </span>
-      </div>
-
-      <div class="summary-row">
-        <span>SHIPPING</span>
-
-        <span id="shipping">
-          $6.99
-        </span>
-      </div>
-
-      <div class="summary-row">
-        <span>TAX (EST.)</span>
-
-        <span id="tax">
-          $3.50
-        </span>
-      </div>
-
-      <div class="summary-total">
-        <span>TOTAL</span>
-
-        <span id="grand-total">
-          $60.46
-        </span>
-      </div>
-
-      <button class="checkout-btn">
-        PROCEED TO CHECKOUT
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- SCRIPT -->
-
-<script>
-
-const items = [
-
-  {
-    price: 4.99,
-    qty: 1
-  },
-
-  {
-    price: 24.99,
-    qty: 1
-  },
-
-  {
-    price: 19.99,
-    qty: 1
-  }
-
-];
-
-const shipping = 6.99;
-
-const taxRate = 0.07;
-
-function money(value){
-
-  return "$" + value.toFixed(2);
-
-}
-
-function changeQty(index, amount){
-
-  items[index].qty += amount;
-
-  if(items[index].qty < 0){
-
-    items[index].qty = 0;
-
-  }
-
-  updateCart();
-
-}
-
-function updateCart(){
-
-  let subtotal = 0;
-
-  let totalItems = 0;
-
-  items.forEach((item,index)=>{
-
-    const itemTotal =
-      item.price * item.qty;
-
-    subtotal += itemTotal;
-
-    totalItems += item.qty;
-
-    document.getElementById(
-      `qty-${index}`
-    ).textContent = item.qty;
-
-    document.getElementById(
-      `total-${index}`
-    ).textContent = money(itemTotal);
-
-  });
-
-  const tax =
-    subtotal * taxRate;
-
-  const grandTotal =
-    subtotal + shipping + tax;
-
-  document.getElementById(
-    "subtotal-label"
-  ).textContent =
-    `SUBTOTAL (${totalItems} ITEMS)`;
-
-  document.getElementById(
-    "subtotal"
-  ).textContent =
-    money(subtotal);
-
-  document.getElementById(
-    "tax"
-  ).textContent =
-    money(tax);
-
-  document.getElementById(
-    "shipping"
-  ).textContent =
-    money(shipping);
-
-  document.getElementById(
-    "grand-total"
-  ).textContent =
-    money(grandTotal);
-
-}
-
-updateCart();
-
-</script>
-
-</body>
+  </body>
 </html>

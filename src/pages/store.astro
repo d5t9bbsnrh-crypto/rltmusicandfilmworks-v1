@@ -4,10 +4,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RLT Store</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>OZONE Store</title>
 
     <style>
+
       * {
         margin: 0;
         padding: 0;
@@ -15,111 +21,210 @@
       }
 
       body {
-        background: black;
-        color: white;
+        background: #000;
         font-family: Arial, Helvetica, sans-serif;
-        overflow-x: hidden;
+        overflow: hidden;
+        color: white;
       }
 
-      .page {
+      .store-page {
+        position: relative;
         width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 40px;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
       }
 
-      /* NAVIGATION */
+      /* HERO IMAGE */
 
-      .nav {
+      .hero-image {
+        position: absolute;
+        inset: 0;
+
         width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 18px;
-        padding: 24px 12px;
-        flex-wrap: wrap;
-      }
+        height: 100%;
 
-      .nav a {
-        color: gold;
-        text-decoration: none;
-        border: 1px solid rgba(255, 215, 0, 0.55);
-        padding: 12px 20px;
-        font-size: 18px;
-        letter-spacing: 2px;
-        background: rgba(0, 0, 0, 0.65);
-        border-radius: 6px;
-        transition: 0.25s ease;
-      }
-
-      .nav a:hover {
-        background: gold;
-        color: black;
-      }
-
-      /* STORE BANNER */
-
-      .hero {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-      }
-
-      .hero img {
-        width: 92%;
-        max-width: 1400px;
-        height: auto;
         object-fit: contain;
-        display: block;
+
+        z-index: 1;
+      }
+
+      /* OVERLAY */
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+
+        background: transparent;
+
+        z-index: 2;
+      }
+
+      /* TOP NAV */
+
+      .top-nav {
+        position: absolute;
+
+        top: 18px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 48px;
+
+        padding: 14px 34px;
+
+        background: rgba(0,0,0,0.18);
+
+        border-radius: 18px;
+
+        backdrop-filter: blur(10px);
+
+        z-index: 100;
+      }
+
+      .top-nav a {
+        color: #d4af37;
+
+        text-decoration: none;
+
+        font-size: 20px;
+        font-weight: bold;
+
+        letter-spacing: 3px;
+
+        transition: 0.3s ease;
+      }
+
+      .top-nav a:hover {
+        color: white;
+      }
+
+      /* DOWNLOAD BUTTON */
+
+      .download-button {
+        position: absolute;
+
+        top: 18px;
+        right: 3%;
+
+        z-index: 100;
+      }
+
+      .download-button a {
+        display: inline-block;
+
+        padding: 16px 34px;
+
+        border-radius: 16px;
+
+        background: #d4af37;
+
+        color: #000;
+
+        text-decoration: none;
+
+        font-size: 18px;
+        font-weight: bold;
+
+        letter-spacing: 2px;
+
+        box-shadow:
+          0 0 24px rgba(212,175,55,0.45);
+
+        transition: 0.3s ease;
+      }
+
+      .download-button a:hover {
+        transform: scale(1.03);
+
+        box-shadow:
+          0 0 34px rgba(212,175,55,0.75);
       }
 
       /* MOBILE */
 
       @media (max-width: 768px) {
-        .nav {
-          gap: 8px;
-          padding: 14px 8px;
+
+        .top-nav {
+
+          gap: 18px;
+
+          padding: 12px 18px;
         }
 
-        .nav a {
-          font-size: 11px;
-          padding: 9px 10px;
-          letter-spacing: 1px;
+        .top-nav a {
+
+          font-size: 13px;
+
+          letter-spacing: 2px;
         }
 
-        .hero img {
-          width: 96%;
+        .download-button {
+
+          top: auto;
+
+          bottom: 40px;
+
+          right: 50%;
+
+          transform: translateX(50%);
         }
+
+        .download-button a {
+
+          font-size: 13px;
+
+          padding: 14px 20px;
+        }
+
       }
+
     </style>
+
   </head>
 
   <body>
-    <div class="page">
 
-      <!-- NAVIGATION -->
+    <div class="store-page">
 
-      <nav class="nav">
+      <!-- HERO IMAGE -->
+
+      <img
+        src="/images/hero/logos/Ozone-store.png"
+        alt="OZONE Store"
+        class="hero-image"
+      />
+
+      <!-- OVERLAY -->
+
+      <div class="overlay"></div>
+
+      <!-- TOP NAVIGATION -->
+
+      <nav class="top-nav">
         <a href="/">HOME</a>
-        <a href="/music">MUSIC</a>
-        <a href="/films">FILMS</a>
         <a href="/store">STORE</a>
-        <a href="/contacts">CONTACT</a>
         <a href="/cart">CART</a>
       </nav>
 
-      <!-- STORE IMAGE -->
+      <!-- DOWNLOAD BUTTON -->
 
-      <section class="hero">
-        <img
-          src="/images/storebanner.PNG"
-          alt="RLT Store"
-        />
-      </section>
+      <div class="download-button">
+        <a
+          href="https://buy.stripe.com/00w3cxdsR90U1eI2xGcfK03"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          DOWNLOAD NOW • $4.99
+        </a>
+      </div>
 
     </div>
+
   </body>
 </html>

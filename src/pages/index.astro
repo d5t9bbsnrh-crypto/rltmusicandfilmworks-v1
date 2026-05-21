@@ -4,10 +4,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
     <title>RLT Music & Filmworks</title>
 
     <style>
+
       * {
         margin: 0;
         padding: 0;
@@ -15,113 +21,280 @@
       }
 
       body {
-        background: black;
-        color: white;
+        background: #000;
+        overflow: hidden;
         font-family: Arial, Helvetica, sans-serif;
-        overflow-x: hidden;
+        animation: pageFade 1.2s ease;
       }
 
-      .page {
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* NAVIGATION */
-
-      .nav {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 18px;
-        padding: 24px 12px;
-        flex-wrap: wrap;
+      .homepage {
         position: relative;
-        z-index: 10;
-      }
-
-      .nav a {
-        color: gold;
-        text-decoration: none;
-        border: 1px solid rgba(255, 215, 0, 0.55);
-        padding: 12px 20px;
-        font-size: 18px;
-        letter-spacing: 2px;
-        background: rgba(0, 0, 0, 0.65);
-        border-radius: 6px;
-        transition: 0.25s ease;
-      }
-
-      .nav a:hover {
-        background: gold;
-        color: black;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
       }
 
       /* HERO IMAGE */
 
-      .hero {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        padding-bottom: 40px;
+      .hero-image {
+        position: absolute;
+
+        width: 84%;
+        height: 84%;
+
+        top: 8%;
+        left: 3%;
+
+        object-fit: contain;
+
+        z-index: 1;
+
+        animation: slowZoom 18s ease-in-out infinite alternate;
       }
 
-      .hero img {
-        width: 92%;
-        max-width: 1400px;
-        height: auto;
-        object-fit: contain;
-        display: block;
+      @keyframes slowZoom {
+
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.04);
+        }
+
+      }
+
+      @keyframes pageFade {
+
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+
+      }
+
+      /* DARK OVERLAY */
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.35),
+            rgba(0,0,0,0.10),
+            rgba(0,0,0,0.45)
+          );
+
+        z-index: 2;
+      }
+
+      /* TOP NAVIGATION */
+
+      .top-nav {
+        position: absolute;
+
+        top: 18px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 42px;
+
+        z-index: 100;
+
+        padding: 16px 36px;
+
+        background: rgba(0,0,0,0.22);
+
+        border: 1px solid rgba(255,255,255,0.08);
+
+        border-radius: 20px;
+
+        backdrop-filter: blur(10px);
+
+        box-shadow:
+          0 0 25px rgba(0,0,0,0.35);
+      }
+
+      .top-nav a {
+        color: #d4af37;
+
+        text-decoration: none;
+
+        font-size: 22px;
+        font-weight: bold;
+
+        letter-spacing: 3px;
+
+        transition: 0.3s ease;
+
+        text-shadow:
+          0 0 12px rgba(212,175,55,0.45);
+      }
+
+      .top-nav a:hover {
+        color: white;
+
+        transform: translateY(-2px);
+
+        text-shadow:
+          0 0 18px rgba(212,175,55,0.85);
+      }
+
+      /* SHOP NOW BUTTON */
+
+      .download-link {
+        position: absolute;
+
+        top: 22px;
+        right: 3%;
+
+        z-index: 100;
+      }
+
+      .download-link a {
+        color: #d4af37;
+
+        text-decoration: none;
+
+        font-size: 15px;
+        font-weight: bold;
+
+        letter-spacing: 2.5px;
+
+        padding: 13px 28px;
+
+        border: 1px solid rgba(212, 175, 55, 0.45);
+
+        border-radius: 16px;
+
+        background: rgba(0, 0, 0, 0.45);
+
+        backdrop-filter: blur(6px);
+
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease,
+          color 0.3s ease,
+          box-shadow 0.3s ease;
+
+        box-shadow:
+          0 0 18px rgba(212,175,55,0.15);
+      }
+
+      .download-link a:hover {
+        background: #d4af37;
+
+        color: black;
+
+        transform: scale(1.04);
+
+        box-shadow:
+          0 0 28px rgba(212,175,55,0.65);
       }
 
       /* MOBILE */
 
       @media (max-width: 768px) {
-        .nav {
-          gap: 8px;
-          padding: 14px 8px;
-        }
 
-        .nav a {
-          font-size: 11px;
-          padding: 9px 10px;
-          letter-spacing: 1px;
-        }
+        .hero-image {
 
-        .hero img {
           width: 96%;
+          height: 96%;
+
+          top: 4%;
+          left: 1%;
         }
+
+        .top-nav {
+
+          top: 18px;
+
+          gap: 22px;
+
+          padding: 12px 20px;
+        }
+
+        .top-nav a {
+
+          font-size: 14px;
+
+          letter-spacing: 2px;
+        }
+
+        .download-link {
+
+          top: auto;
+
+          bottom: 40px;
+
+          right: 50%;
+
+          transform: translateX(50%);
+
+          width: 90%;
+
+          text-align: center;
+        }
+
+        .download-link a {
+
+          display: inline-block;
+
+          font-size: 12px;
+
+          padding: 12px 18px;
+        }
+
       }
+
     </style>
+
   </head>
 
   <body>
-    <div class="page">
 
-      <!-- NAVIGATION -->
+    <div class="homepage">
 
-      <nav class="nav">
+      <!-- HERO IMAGE -->
+
+      <img
+        src="/images/hero/rlt-homepage-hero-master.png"
+        alt="RLT Music & Filmworks"
+        class="hero-image"
+      />
+
+      <!-- OVERLAY -->
+
+      <div class="overlay"></div>
+
+      <!-- TOP NAVIGATION -->
+
+      <nav class="top-nav">
         <a href="/">HOME</a>
-        <a href="/music">MUSIC</a>
-        <a href="/films">FILMS</a>
         <a href="/store">STORE</a>
-        <a href="/contacts">CONTACT</a>
         <a href="/cart">CART</a>
       </nav>
 
-      <!-- HOMEPAGE IMAGE -->
+      <!-- SHOP NOW -->
 
-      <section class="hero">
-        <img
-          src="/images/rlthomepage.png"
-          alt="RLT Music & Filmworks"
-        />
-      </section>
+      <div class="download-link">
+        <a href="/store">
+          SHOP NOW
+        </a>
+      </div>
 
     </div>
+
   </body>
 </html>
