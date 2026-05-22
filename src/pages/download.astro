@@ -1,123 +1,31 @@
 ---
-// src/pages/download.astro
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Download | RLT Music & Filmworks</title>
-
-    <style>
-      :root {
-        --gold: #d4af37;
-        --black: #000000;
-        --white: #ffffff;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background: #000;
-        color: #fff;
-        font-family: Arial, Helvetica, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 40px 20px;
-      }
-
-      .container {
-        max-width: 700px;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(212, 175, 55, 0.4);
-        border-radius: 20px;
-        padding: 60px 40px;
-        box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
-      }
-
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        color: var(--gold);
-      }
-
-      p {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        margin-bottom: 30px;
-        color: rgba(255,255,255,0.9);
-      }
-
-      .download-button {
-        display: inline-block;
-        background: var(--gold);
-        color: #000;
-        text-decoration: none;
-        padding: 18px 40px;
-        border-radius: 999px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        transition: 0.3s ease;
-      }
-
-      .download-button:hover {
-        transform: scale(1.05);
-        background: #f0c550;
-      }
-
-      .home-link {
-        display: block;
-        margin-top: 35px;
-        color: #fff;
-        text-decoration: none;
-        opacity: 0.8;
-      }
-
-      .home-link:hover {
-        opacity: 1;
-      }
-
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 2.2rem;
-        }
-
-        .container {
-          padding: 40px 25px;
-        }
-      }
-    </style>
+    <title>Download The Funk Strut</title>
   </head>
 
-  <body>
-    <div class="container">
-      <h1>Thank You For Your Purchase</h1>
+  <body style="background:black;color:white;text-align:center;padding:60px;font-family:Arial;">
+    <h1>Thank You For Your Purchase</h1>
 
-      <p>
-        Your download is ready.<br />
-        Click the button below to download
-        <strong>OZONE – The Funk Strut</strong>.
-      </p>
+    <p>Download OZONE – The Funk Strut below.</p>
 
-      <a
-        class="download-button"
-        href="/downloads/The-Funk-Strut.zip"
-        download
-      >
-        Download Now
-      </a>
-
-      <a class="home-link" href="/">
-        Return to Home
-      </a>
-    </div>
+    <a
+      href="/downloads/The-Funk-Strut.zip"
+      download
+      style="
+        display:inline-block;
+        padding:15px 30px;
+        background:#FFD700;
+        color:black;
+        text-decoration:none;
+        font-weight:bold;
+        border-radius:8px;
+      "
+    >
+      Download ZIP
+    </a>
   </body>
 </html>
