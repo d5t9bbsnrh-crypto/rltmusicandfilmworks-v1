@@ -8,236 +8,312 @@
     <title>RLT Music & Film Works</title>
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+
+      *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
       }
 
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #000;
-        color: white;
-        overflow-x: hidden;
+      html,
+      body{
+        width:100%;
+        overflow-x:hidden;
       }
 
-      .hero {
-        min-height: 100vh;
-        background: #000;
-
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        overflow: hidden;
+      body{
+        font-family:Arial, Helvetica, sans-serif;
+        background:#000;
+        color:white;
       }
 
-      .hero::before {
-        content: "";
+      .hero{
+        min-height:100vh;
+        background:#000;
 
-        position: absolute;
+        display:flex;
+        flex-direction:column;
 
-        top: 50%;
-        left: 50%;
-
-        transform: translate(-50%, -50%);
-
-        width: 96%;
-        height: 96%;
-
-        background-image: url('/images/hero/rlt-homepage-hero-master.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-
-        opacity: 1;
-
-        z-index: 1;
+        position:relative;
+        overflow:hidden;
       }
 
-      nav {
-        width: 100%;
-        padding: 24px 50px;
+      .hero::before{
+        content:"";
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        position:absolute;
 
-        background: rgba(0,0,0,0.35);
-        backdrop-filter: blur(10px);
+        top:50%;
+        left:50%;
 
-        position: fixed;
-        top: 0;
-        z-index: 3000;
+        transform:translate(-50%, -50%);
+
+        width:96%;
+        height:96%;
+
+        background-image:url('/images/hero/rlt-homepage-hero-master.png');
+
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-position:center center;
+
+        opacity:1;
+
+        z-index:1;
       }
 
-      .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 40px;
+      nav{
+        width:100%;
+
+        padding:24px 50px;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        background:rgba(0,0,0,0.35);
+        backdrop-filter:blur(10px);
+
+        position:fixed;
+        top:0;
+
+        z-index:3000;
       }
 
-      nav a {
-        color: white;
-        text-decoration: none;
-        letter-spacing: 2px;
-        font-size: 1.35rem;
-        font-weight: 700;
-        transition: 0.3s ease;
+      .nav-left{
+        display:flex;
+        align-items:center;
+        gap:40px;
       }
 
-      nav a:hover {
-        color: #ffd700;
+      nav a{
+        color:white;
+        text-decoration:none;
+
+        letter-spacing:2px;
+        font-size:1.35rem;
+        font-weight:700;
+
+        transition:0.3s ease;
       }
 
-      .hero-content {
-        flex: 1;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        text-align: center;
-
-        padding-left: 20px;
-        padding-right: 20px;
-
-        position: relative;
-        z-index: 2;
+      nav a:hover{
+        color:#ffd700;
       }
 
-      .top-right-button {
-        position: fixed;
-        top: 18px;
-        left: 50%;
-        transform: translateX(220px);
-        z-index: 3000;
+      .hero-content{
+        flex:1;
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+
+        text-align:center;
+
+        padding-left:20px;
+        padding-right:20px;
+
+        position:relative;
+        z-index:2;
       }
 
-      .btn {
-        padding: 14px 34px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.3s ease;
+      .top-right-button{
+        position:fixed;
+
+        top:18px;
+        left:50%;
+
+        transform:translateX(220px);
+
+        z-index:3000;
       }
 
-      .btn-primary {
-        background: #ffd700;
-        color: black;
+      .btn{
+        padding:14px 34px;
+
+        border-radius:50px;
+
+        text-decoration:none;
+        font-weight:bold;
+
+        transition:0.3s ease;
       }
 
-      .btn-primary:hover {
-        background: white;
-        transform: translateY(-2px);
+      .btn-primary{
+        background:#ffd700;
+        color:black;
       }
 
-      /* Large computers / desktops */
-      @media (min-width: 1200px) {
-
-        .hero::before {
-          width: 98%;
-          height: 98%;
-          top: 50%;
-        }
+      .btn-primary:hover{
+        background:white;
+        transform:translateY(-2px);
       }
 
-      /* iPads / tablets */
-      @media (max-width: 1024px) {
+      /* LARGE DESKTOPS */
 
-        .hero::before {
-          width: 100%;
-          height: 100%;
-          top: 50%;
+      @media (min-width:1200px){
+
+        .hero::before{
+          width:98%;
+          height:98%;
+          top:50%;
         }
 
-        nav {
-          padding: 20px;
-        }
-
-        .nav-left {
-          gap: 24px;
-        }
-
-        .hero-content {
-          padding-bottom: 70px;
-        }
-
-        .top-right-button {
-          top: 18px;
-          left: 50%;
-          transform: translateX(170px);
-        }
       }
 
-      /* iPhones / Samsung phones */
-      @media (max-width: 600px) {
+      /* TABLETS */
 
-        .hero::before {
-          width: 100%;
-          height: 100%;
-          top: 52%;
+      @media (max-width:1024px){
+
+        .hero::before{
+          width:100%;
+          height:100%;
+          top:50%;
         }
 
-        nav {
-          padding: 14px 10px;
+        nav{
+          padding:20px;
         }
 
-        .nav-left {
-          gap: 14px;
-          flex-wrap: wrap;
+        .nav-left{
+          gap:24px;
         }
 
-        nav a {
-          font-size: 1rem;
-          letter-spacing: 1px;
-          font-weight: 700;
+        .hero-content{
+          padding-bottom:70px;
         }
 
-        .hero-content {
-          justify-content: flex-end;
-          padding-bottom: 45px;
+        .top-right-button{
+          top:18px;
+          left:50%;
+          transform:translateX(170px);
         }
 
-        .top-right-button {
-          top: 12px;
-          left: 50%;
-          transform: translateX(95px);
-        }
-
-        .btn {
-          padding: 11px 22px;
-          font-size: 0.8rem;
-        }
       }
 
-      /* Very small phones */
-      @media (max-width: 390px) {
+      /* MOBILE PORTRAIT FIX */
 
-        .hero::before {
-          width: 100%;
-          height: 100%;
-          top: 52%;
+      @media screen and (max-width:768px) and (orientation:portrait){
+
+        body{
+          overflow-x:hidden;
         }
 
-        .nav-left {
-          gap: 10px;
+        .hero{
+          min-height:100vh;
         }
 
-        nav a {
-          font-size: 0.9rem;
-          font-weight: 700;
+        .hero::before{
+
+          width:92vw;
+          height:92vh;
+
+          top:47%;
+          left:50%;
+
+          transform:translate(-50%, -50%);
+
+          background-size:contain;
+          background-position:center center;
         }
 
-        .btn {
-          padding: 10px 18px;
+        nav{
+          padding:14px 14px;
         }
 
-        .top-right-button {
-          top: 10px;
-          left: 50%;
-          transform: translateX(80px);
+        .nav-left{
+          gap:14px;
+          flex-wrap:wrap;
+          justify-content:center;
         }
+
+        nav a{
+          font-size:0.95rem;
+          letter-spacing:1px;
+          font-weight:700;
+        }
+
+        .hero-content{
+          justify-content:flex-end;
+          padding-bottom:40px;
+        }
+
+        .top-right-button{
+
+          top:74px;
+
+          left:50%;
+          transform:translateX(-50%);
+        }
+
+        .btn{
+          padding:11px 22px;
+          font-size:0.82rem;
+        }
+
+      }
+
+      /* SMALLER PHONES */
+
+      @media (max-width:480px){
+
+        .hero::before{
+
+          width:94vw;
+          height:88vh;
+
+          top:45%;
+        }
+
+        nav{
+          padding:12px 10px;
+        }
+
+        .nav-left{
+          gap:10px;
+        }
+
+        nav a{
+          font-size:0.85rem;
+        }
+
+        .top-right-button{
+
+          top:70px;
+
+          left:50%;
+          transform:translateX(-50%);
+        }
+
+        .btn{
+          padding:10px 18px;
+          font-size:0.75rem;
+        }
+
+      }
+
+      /* VERY SMALL PHONES */
+
+      @media (max-width:390px){
+
+        .hero::before{
+
+          width:96vw;
+          height:84vh;
+
+          top:44%;
+        }
+
+        nav a{
+          font-size:0.78rem;
+        }
+
+        .btn{
+          padding:9px 16px;
+          font-size:0.72rem;
+        }
+
       }
 
     </style>
@@ -250,9 +326,11 @@
       <nav>
 
         <div class="nav-left">
+
           <a href="/">HOME</a>
           <a href="/store">STORE</a>
           <a href="/cart">CART</a>
+
         </div>
 
       </nav>

@@ -1,3 +1,4 @@
+```astro
 ---
 ---
 
@@ -98,6 +99,8 @@
 
         box-shadow:
           0 0 25px rgba(255,215,0,0.35);
+
+        cursor:pointer;
       }
 
       .download-btn:hover{
@@ -105,6 +108,23 @@
 
         box-shadow:
           0 0 35px rgba(255,215,0,0.55);
+      }
+
+      .download-btn.disabled{
+        opacity:0.65;
+        pointer-events:none;
+      }
+
+      .status-message{
+        margin-top:22px;
+        color:#ffd700;
+        font-size:0.95rem;
+        opacity:0;
+        transition:opacity .3s ease;
+      }
+
+      .status-message.show{
+        opacity:1;
       }
 
       .footer{
@@ -152,12 +172,17 @@
       </p>
 
       <a
+        id="downloadButton"
         href="/downloads/The-Funk-Strut.zip"
-        download
+        download="The-Funk-Strut.zip"
         class="download-btn"
       >
         DOWNLOAD NOW
       </a>
+
+      <div id="statusMessage" class="status-message">
+        Your download has started.
+      </div>
 
       <div class="footer">
         OZONE • RLT Music & Film Works<br />
@@ -166,5 +191,42 @@
 
     </div>
 
+    <script>
+      const downloadButton = document.getElementById('downloadButton');
+      const statusMessage = document.getElementById('statusMessage');
+
+      let downloadStarted = false;
+
+      downloadButton.addEventListener('click', () => {
+        if (downloadStarted) {
+          return;
+        }
+
+        downloadStarted = true;
+
+        downloadButton.classList.add('disabled');
+        downloadButton.textContent = 'DOWNLOAD STARTED';
+
+        statusMessage.classList.add('show');
+
+        setTimeout(() => {
+          downloadButton.classList.remove('disabled');
+          downloadButton.textContent = 'DOWNLOAD NOW';
+          downloadStarted = false;
+        }, 15000);
+      });
+    </script>
+
   </body>
 </html>
+```
+
+Replace the entire contents of your current `download.astro` file with this updated version.
+
+This version:
+
+* prevents rapid repeated download clicks
+* stops accidental multiple ZIP downloads
+* works better on iPhone/Safari
+* shows a download started confirmation
+* temporarily disables the button after one click
