@@ -1,4 +1,5 @@
 ---
+const audioSrc = "/audio/the-funk-strut-preview.mp3";
 ---
 
 <html lang="en">
@@ -8,344 +9,344 @@
     <title>RLT Music & Film Works</title>
 
     <style>
-
-      *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
+      * {
+        box-sizing: border-box;
       }
 
       html,
-      body{
-        width:100%;
-        overflow-x:hidden;
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        font-family: Georgia, "Times New Roman", serif;
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
       }
 
-      body{
-        font-family:Arial, Helvetica, sans-serif;
-        background:#000;
-        color:white;
+      body {
+        min-height: 100vh;
       }
 
-      .hero{
-        min-height:100vh;
-        background:#000;
-
-        display:flex;
-        flex-direction:column;
-
-        position:relative;
-        overflow:hidden;
+      .page {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image:
+          linear-gradient(
+            rgba(0, 0, 0, 0.18),
+            rgba(0, 0, 0, 0.42)
+          ),
+          url("/images/hero/rlt-homepage-hero-master.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
 
-      .hero::before{
-        content:"";
-
-        position:absolute;
-
-        top:50%;
-        left:50%;
-
-        transform:translate(-50%, -50%);
-
-        width:96%;
-        height:96%;
-
-        background-image:url('/images/hero/rlt-homepage-hero-master.png');
-
-        background-size:contain;
-        background-repeat:no-repeat;
-        background-position:center center;
-
-        opacity:1;
-
-        z-index:1;
+      .top-nav {
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(18px, 3vw, 42px);
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 215, 120, 0.28);
       }
 
-      nav{
-        width:100%;
-
-        padding:24px 50px;
-
-        display:flex;
-        justify-content:center;
-        align-items:center;
-
-        background:rgba(0,0,0,0.35);
-        backdrop-filter:blur(10px);
-
-        position:fixed;
-        top:0;
-
-        z-index:3000;
+      .top-nav a {
+        color: #fff7d6;
+        text-decoration: none;
+        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-shadow:
+          0 0 8px rgba(255, 214, 98, 0.85),
+          0 2px 8px rgba(0, 0, 0, 0.95);
+        transition: color 0.2s ease, transform 0.2s ease;
       }
 
-      .nav-left{
-        display:flex;
-        align-items:center;
-        gap:40px;
+      .top-nav a:hover {
+        color: #ffd36a;
+        transform: translateY(-1px);
       }
 
-      nav a{
-        color:white;
-        text-decoration:none;
-
-        letter-spacing:2px;
-        font-size:1.35rem;
-        font-weight:700;
-
-        transition:0.3s ease;
+      .hero-content {
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 90px 22px 40px;
       }
 
-      nav a:hover{
-        color:#ffd700;
+      .listen-wrap {
+        position: absolute;
+        right: 8%;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
       }
 
-      .hero-content{
-        flex:1;
-
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-
-        text-align:center;
-
-        padding-left:20px;
-        padding-right:20px;
-
-        position:relative;
-        z-index:2;
+      .listen-button {
+        cursor: pointer;
+        border: 1px solid rgba(255, 221, 135, 0.82);
+        border-radius: 999px;
+        padding: 13px 28px;
+        color: #fff7dc;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background:
+          radial-gradient(circle at top, rgba(255, 215, 128, 0.22), transparent 42%),
+          linear-gradient(135deg, rgba(30, 18, 5, 0.92), rgba(0, 0, 0, 0.82));
+        box-shadow:
+          0 0 16px rgba(255, 204, 92, 0.52),
+          0 0 34px rgba(255, 204, 92, 0.24),
+          inset 0 0 12px rgba(255, 255, 255, 0.08);
+        text-shadow:
+          0 0 8px rgba(255, 214, 98, 0.8),
+          0 2px 8px rgba(0, 0, 0, 0.95);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
       }
 
-      .top-right-button{
-        position:fixed;
-
-        top:18px;
-        left:50%;
-
-        transform:translateX(220px);
-
-        z-index:3000;
+      .listen-button:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 230, 160, 1);
+        box-shadow:
+          0 0 20px rgba(255, 210, 106, 0.7),
+          0 0 44px rgba(255, 210, 106, 0.34),
+          inset 0 0 14px rgba(255, 255, 255, 0.1);
       }
 
-      .btn{
-        padding:14px 34px;
-
-        border-radius:50px;
-
-        text-decoration:none;
-        font-weight:bold;
-
-        transition:0.3s ease;
+      .listen-button:active {
+        transform: translateY(0);
       }
 
-      .btn-primary{
-        background:#ffd700;
-        color:black;
+      .listen-status {
+        min-height: 20px;
+        color: #ffe9a6;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+        opacity: 0.92;
+        text-align: center;
       }
 
-      .btn-primary:hover{
-        background:white;
-        transform:translateY(-2px);
+      audio {
+        display: none;
       }
 
-      /* LARGE DESKTOPS */
-
-      @media (min-width:1200px){
-
-        .hero::before{
-          width:98%;
-          height:98%;
-          top:50%;
+      @media (max-width: 900px) {
+        .page {
+          background-position: center center;
         }
 
+        .top-nav {
+          top: 14px;
+          gap: 18px;
+          padding: 9px 16px;
+        }
+
+        .listen-wrap {
+          right: 6%;
+          top: 50%;
+          bottom: auto;
+          left: auto;
+          transform: translateY(-50%);
+        }
+
+        .listen-button {
+          padding: 12px 22px;
+        }
       }
 
-      /* TABLETS */
-
-      @media (max-width:1024px){
-
-        .hero::before{
-          width:100%;
-          height:100%;
-          top:50%;
+      @media (max-width: 600px) {
+        .page {
+          background-size: cover;
+          background-position: center center;
         }
 
-        nav{
-          padding:20px;
+        .top-nav {
+          width: calc(100% - 28px);
+          top: 12px;
+          gap: 14px;
+          padding: 9px 12px;
         }
 
-        .nav-left{
-          gap:24px;
+        .top-nav a {
+          font-size: 0.78rem;
+          letter-spacing: 0.12em;
         }
 
-        .hero-content{
-          padding-bottom:70px;
+        .hero-content {
+          padding-top: 76px;
         }
 
-        .top-right-button{
-          top:18px;
-          left:50%;
-          transform:translateX(170px);
+        .listen-wrap {
+          right: 6%;
+          top: 50%;
+          bottom: auto;
+          left: auto;
+          transform: translateY(-50%);
         }
 
+        .listen-button {
+          padding: 11px 18px;
+          font-size: 0.76rem;
+          letter-spacing: 0.06em;
+          white-space: nowrap;
+        }
+
+        .listen-status {
+          font-size: 0.72rem;
+        }
       }
 
-      /* MOBILE PORTRAIT FIX */
-
-      @media screen and (max-width:768px) and (orientation:portrait){
-
-        body{
-          overflow-x:hidden;
+      @media (orientation: landscape) and (max-height: 520px) {
+        .top-nav {
+          top: 10px;
+          padding: 7px 14px;
         }
 
-        .hero{
-          min-height:100vh;
+        .hero-content {
+          padding-top: 62px;
         }
 
-        .hero::before{
-
-          width:92vw;
-          height:92vh;
-
-          top:47%;
-          left:50%;
-
-          transform:translate(-50%, -50%);
-
-          background-size:contain;
-          background-position:center center;
+        .listen-wrap {
+          right: 6%;
+          top: 50%;
+          bottom: auto;
+          left: auto;
+          transform: translateY(-50%);
         }
 
-        nav{
-          padding:14px 14px;
+        .listen-button {
+          padding: 9px 18px;
+          font-size: 0.72rem;
         }
 
-        .nav-left{
-          gap:14px;
-          flex-wrap:wrap;
-          justify-content:center;
+        .listen-status {
+          display: none;
         }
-
-        nav a{
-          font-size:0.95rem;
-          letter-spacing:1px;
-          font-weight:700;
-        }
-
-        .hero-content{
-          justify-content:flex-end;
-          padding-bottom:40px;
-        }
-
-        .top-right-button{
-
-          top:74px;
-
-          left:50%;
-          transform:translateX(-50%);
-        }
-
-        .btn{
-          padding:11px 22px;
-          font-size:0.82rem;
-        }
-
       }
-
-      /* SMALLER PHONES */
-
-      @media (max-width:480px){
-
-        .hero::before{
-
-          width:94vw;
-          height:88vh;
-
-          top:45%;
-        }
-
-        nav{
-          padding:12px 10px;
-        }
-
-        .nav-left{
-          gap:10px;
-        }
-
-        nav a{
-          font-size:0.85rem;
-        }
-
-        .top-right-button{
-
-          top:70px;
-
-          left:50%;
-          transform:translateX(-50%);
-        }
-
-        .btn{
-          padding:10px 18px;
-          font-size:0.75rem;
-        }
-
-      }
-
-      /* VERY SMALL PHONES */
-
-      @media (max-width:390px){
-
-        .hero::before{
-
-          width:96vw;
-          height:84vh;
-
-          top:44%;
-        }
-
-        nav a{
-          font-size:0.78rem;
-        }
-
-        .btn{
-          padding:9px 16px;
-          font-size:0.72rem;
-        }
-
-      }
-
     </style>
   </head>
 
   <body>
-
-    <section class="hero">
-
-      <nav>
-
-        <div class="nav-left">
-
-          <a href="/">HOME</a>
-          <a href="/store">STORE</a>
-          <a href="/cart">CART</a>
-
-        </div>
-
+    <main class="page">
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="/">HOME</a>
+        <a href="/store">STORE</a>
+        <a href="/cart">CART</a>
       </nav>
 
-      <div class="top-right-button">
+      <section class="hero-content" aria-label="RLT Music and Film Works homepage">
+        <div class="listen-wrap">
+          <button id="listenButton" class="listen-button" type="button">
+            ♫♫ Listen to ♫♫
+          </button>
 
-        <a href="/store" class="btn btn-primary">
-          SHOP NOW
-        </a>
+          <div id="listenStatus" class="listen-status" aria-live="polite"></div>
 
-      </div>
+          <audio id="funkAudio" preload="auto">
+            <source src={audioSrc} type="audio/mpeg" />
+          </audio>
+        </div>
+      </section>
+    </main>
 
-      <div class="hero-content"></div>
+    <script is:inline>
+      const audio = document.getElementById("funkAudio");
+      const listenButton = document.getElementById("listenButton");
+      const listenStatus = document.getElementById("listenStatus");
 
-    </section>
+      let hasPlayedOnce = false;
 
+      function resetAudioToStart() {
+        if (!audio) return;
+
+        try {
+          audio.currentTime = 0;
+        } catch (error) {
+          console.warn("Audio reset was not available yet.", error);
+        }
+      }
+
+      async function toggleAudio() {
+        if (!audio || !listenButton || !listenStatus) return;
+
+        audio.volume = 1;
+
+        if (!audio.paused) {
+          audio.pause();
+          listenButton.textContent = "♫♫ Listen to ♫♫";
+          listenStatus.textContent = "Paused";
+          return;
+        }
+
+        try {
+          if (!hasPlayedOnce || audio.ended) {
+            resetAudioToStart();
+          }
+
+          await audio.play();
+          hasPlayedOnce = true;
+          listenButton.textContent = "❚❚ Pause";
+          listenStatus.textContent = "Now playing The Funk Strut";
+        } catch (error) {
+          listenButton.textContent = "♫♫ Listen to ♫♫";
+          listenStatus.textContent = "Tap Listen again to start audio";
+          console.warn("Audio playback was blocked or failed.", error);
+        }
+      }
+
+      if (listenButton && audio) {
+        listenButton.addEventListener("click", toggleAudio);
+
+        audio.addEventListener("ended", () => {
+          listenButton.textContent = "♫♫ Listen to ♫♫";
+          listenStatus.textContent = "Tap Listen to play again";
+        });
+
+        audio.addEventListener("pause", () => {
+          if (
+            listenStatus &&
+            hasPlayedOnce &&
+            audio.currentTime > 0 &&
+            !audio.ended
+          ) {
+            listenButton.textContent = "♫♫ Listen to ♫♫";
+            listenStatus.textContent = "Paused";
+          }
+        });
+
+        audio.addEventListener("play", () => {
+          listenButton.textContent = "❚❚ Pause";
+          listenStatus.textContent = "Now playing The Funk Strut";
+        });
+      }
+    </script>
   </body>
 </html>
