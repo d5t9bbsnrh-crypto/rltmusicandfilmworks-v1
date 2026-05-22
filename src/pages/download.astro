@@ -1,6 +1,5 @@
 ---
 ---
----
 
 <html lang="en">
   <head>
@@ -9,75 +8,162 @@
     <title>Download – OZONE The Funk Strut</title>
 
     <style>
-      body{
+      *{
         margin:0;
+        padding:0;
+        box-sizing:border-box;
+      }
+
+      body{
         font-family:Arial, Helvetica, sans-serif;
-        background:#000;
-        color:#fff;
+        min-height:100vh;
+        overflow:hidden;
+        position:relative;
         display:flex;
         justify-content:center;
         align-items:center;
-        min-height:100vh;
-        text-align:center;
+        background:#000;
+      }
+
+      .bg{
+        position:fixed;
+        inset:0;
+
+        background-image:
+          linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+          url('/images/hero/rlt-homepage-hero-master.png');
+
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+
+        z-index:1;
       }
 
       .download-box{
-        background:rgba(255,255,255,0.06);
-        border:1px solid rgba(255,255,255,0.15);
-        padding:60px;
-        border-radius:24px;
-        max-width:700px;
+        position:relative;
+        z-index:5;
+
         width:90%;
-        backdrop-filter:blur(12px);
+        max-width:760px;
+
+        padding:70px 60px;
+
+        border-radius:28px;
+
+        background:rgba(0,0,0,0.58);
+
+        border:1px solid rgba(255,215,0,0.25);
+
+        backdrop-filter:blur(10px);
+
+        text-align:center;
+
+        box-shadow:
+          0 0 30px rgba(0,0,0,0.45),
+          0 0 40px rgba(255,215,0,0.15);
       }
 
       h1{
-        font-size:3rem;
-        margin-bottom:20px;
         color:#ffd700;
+        font-size:3.2rem;
+        margin-bottom:25px;
+        letter-spacing:2px;
       }
 
       p{
-        font-size:1.2rem;
-        margin-bottom:35px;
-        line-height:1.6;
+        color:#fff;
+        font-size:1.15rem;
+        line-height:1.8;
+        margin-bottom:45px;
       }
 
       .download-btn{
         display:inline-block;
-        padding:18px 40px;
-        font-size:1.1rem;
-        font-weight:bold;
-        text-decoration:none;
+
+        background:linear-gradient(135deg,#ffd700,#ffb700);
+
         color:#000;
-        background:#ffd700;
-        border-radius:14px;
-        transition:0.3s ease;
+        text-decoration:none;
+
+        padding:22px 55px;
+
+        border-radius:60px;
+
+        font-size:1.15rem;
+        font-weight:700;
+        letter-spacing:1px;
+
+        transition:.3s ease;
+
+        box-shadow:
+          0 0 25px rgba(255,215,0,0.35);
       }
 
       .download-btn:hover{
-        transform:scale(1.05);
+        transform:scale(1.04);
+
+        box-shadow:
+          0 0 35px rgba(255,215,0,0.55);
+      }
+
+      .footer{
+        margin-top:45px;
+        color:#ccc;
+        font-size:.95rem;
+        line-height:1.7;
+      }
+
+      @media(max-width:768px){
+
+        .download-box{
+          padding:50px 28px;
+        }
+
+        h1{
+          font-size:2.2rem;
+        }
+
+        p{
+          font-size:1rem;
+        }
+
+        .download-btn{
+          width:100%;
+          padding:20px;
+        }
       }
     </style>
   </head>
 
   <body>
 
+    <div class="bg"></div>
+
     <div class="download-box">
+
       <h1>DOWNLOAD READY</h1>
 
       <p>
         Thank you for supporting OZONE and RLT Music & Film Works.
-        Click below to download your MP3.
+        Your purchase is complete and your download is now ready.
+        Click below to instantly download
+        <strong>“The Funk Strut”</strong>.
       </p>
 
       <a
-        class="download-btn"
-        href="/downloads/the-funk-strut.zip"
+        href="/downloads/The-Funk-Strut.zip"
         download
+        class="download-btn"
       >
         DOWNLOAD NOW
       </a>
+
+      <div class="footer">
+        OZONE • RLT Music & Film Works<br />
+        Independent Music & Film Production
+      </div>
+
     </div>
 
   </body>
