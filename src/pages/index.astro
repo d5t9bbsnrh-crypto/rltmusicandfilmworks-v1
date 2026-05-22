@@ -4,16 +4,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-
-    <title>RLT Music & Filmworks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RLT Music & Film Works</title>
 
     <style>
-
       * {
         margin: 0;
         padding: 0;
@@ -21,280 +15,259 @@
       }
 
       body {
-        background: #000;
-        overflow: hidden;
         font-family: Arial, Helvetica, sans-serif;
-        animation: pageFade 1.2s ease;
-      }
-
-      .homepage {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
         background: #000;
+        color: white;
+        overflow-x: hidden;
       }
 
-      /* HERO IMAGE */
+      .hero {
+        min-height: 100vh;
+        background: #000;
 
-      .hero-image {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+
         position: absolute;
 
-        width: 84%;
-        height: 84%;
+        top: 50%;
+        left: 50%;
 
-        top: 8%;
-        left: 3%;
+        transform: translate(-50%, -50%);
 
-        object-fit: contain;
+        width: 96%;
+        height: 96%;
+
+        background-image: url('/images/hero/rlt-homepage-hero-master.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        opacity: 1;
 
         z-index: 1;
-
-        animation: slowZoom 18s ease-in-out infinite alternate;
       }
 
-      @keyframes slowZoom {
+      nav {
+        width: 100%;
+        padding: 24px 50px;
 
-        from {
-          transform: scale(1);
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        to {
-          transform: scale(1.04);
-        }
+        background: rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
 
+        position: fixed;
+        top: 0;
+        z-index: 3000;
       }
 
-      @keyframes pageFade {
-
-        from {
-          opacity: 0;
-        }
-
-        to {
-          opacity: 1;
-        }
-
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 40px;
       }
 
-      /* DARK OVERLAY */
+      nav a {
+        color: white;
+        text-decoration: none;
+        letter-spacing: 2px;
+        font-size: 1.35rem;
+        font-weight: 700;
+        transition: 0.3s ease;
+      }
 
-      .overlay {
-        position: absolute;
-        inset: 0;
+      nav a:hover {
+        color: #ffd700;
+      }
 
-        background:
-          linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.35),
-            rgba(0,0,0,0.10),
-            rgba(0,0,0,0.45)
-          );
+      .hero-content {
+        flex: 1;
 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+        position: relative;
         z-index: 2;
       }
 
-      /* TOP NAVIGATION */
-
-      .top-nav {
-        position: absolute;
-
+      .top-right-button {
+        position: fixed;
         top: 18px;
         left: 50%;
-
-        transform: translateX(-50%);
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        gap: 42px;
-
-        z-index: 100;
-
-        padding: 16px 36px;
-
-        background: rgba(0,0,0,0.22);
-
-        border: 1px solid rgba(255,255,255,0.08);
-
-        border-radius: 20px;
-
-        backdrop-filter: blur(10px);
-
-        box-shadow:
-          0 0 25px rgba(0,0,0,0.35);
+        transform: translateX(220px);
+        z-index: 3000;
       }
 
-      .top-nav a {
-        color: #d4af37;
-
+      .btn {
+        padding: 14px 34px;
+        border-radius: 50px;
         text-decoration: none;
-
-        font-size: 22px;
         font-weight: bold;
-
-        letter-spacing: 3px;
-
         transition: 0.3s ease;
-
-        text-shadow:
-          0 0 12px rgba(212,175,55,0.45);
       }
 
-      .top-nav a:hover {
-        color: white;
-
-        transform: translateY(-2px);
-
-        text-shadow:
-          0 0 18px rgba(212,175,55,0.85);
-      }
-
-      /* SHOP NOW BUTTON */
-
-      .download-link {
-        position: absolute;
-
-        top: 22px;
-        right: 3%;
-
-        z-index: 100;
-      }
-
-      .download-link a {
-        color: #d4af37;
-
-        text-decoration: none;
-
-        font-size: 15px;
-        font-weight: bold;
-
-        letter-spacing: 2.5px;
-
-        padding: 13px 28px;
-
-        border: 1px solid rgba(212, 175, 55, 0.45);
-
-        border-radius: 16px;
-
-        background: rgba(0, 0, 0, 0.45);
-
-        backdrop-filter: blur(6px);
-
-        transition:
-          transform 0.3s ease,
-          background 0.3s ease,
-          color 0.3s ease,
-          box-shadow 0.3s ease;
-
-        box-shadow:
-          0 0 18px rgba(212,175,55,0.15);
-      }
-
-      .download-link a:hover {
-        background: #d4af37;
-
+      .btn-primary {
+        background: #ffd700;
         color: black;
-
-        transform: scale(1.04);
-
-        box-shadow:
-          0 0 28px rgba(212,175,55,0.65);
       }
 
-      /* MOBILE */
+      .btn-primary:hover {
+        background: white;
+        transform: translateY(-2px);
+      }
 
-      @media (max-width: 768px) {
+      /* Large computers / desktops */
+      @media (min-width: 1200px) {
 
-        .hero-image {
+        .hero::before {
+          width: 98%;
+          height: 98%;
+          top: 50%;
+        }
+      }
 
-          width: 96%;
-          height: 96%;
+      /* iPads / tablets */
+      @media (max-width: 1024px) {
 
-          top: 4%;
-          left: 1%;
+        .hero::before {
+          width: 100%;
+          height: 100%;
+          top: 50%;
         }
 
-        .top-nav {
+        nav {
+          padding: 20px;
+        }
 
+        .nav-left {
+          gap: 24px;
+        }
+
+        .hero-content {
+          padding-bottom: 70px;
+        }
+
+        .top-right-button {
           top: 18px;
+          left: 50%;
+          transform: translateX(170px);
+        }
+      }
 
-          gap: 22px;
+      /* iPhones / Samsung phones */
+      @media (max-width: 600px) {
 
-          padding: 12px 20px;
+        .hero::before {
+          width: 100%;
+          height: 100%;
+          top: 52%;
         }
 
-        .top-nav a {
-
-          font-size: 14px;
-
-          letter-spacing: 2px;
+        nav {
+          padding: 14px 10px;
         }
 
-        .download-link {
-
-          top: auto;
-
-          bottom: 40px;
-
-          right: 50%;
-
-          transform: translateX(50%);
-
-          width: 90%;
-
-          text-align: center;
+        .nav-left {
+          gap: 14px;
+          flex-wrap: wrap;
         }
 
-        .download-link a {
-
-          display: inline-block;
-
-          font-size: 12px;
-
-          padding: 12px 18px;
+        nav a {
+          font-size: 1rem;
+          letter-spacing: 1px;
+          font-weight: 700;
         }
 
+        .hero-content {
+          justify-content: flex-end;
+          padding-bottom: 45px;
+        }
+
+        .top-right-button {
+          top: 12px;
+          left: 50%;
+          transform: translateX(95px);
+        }
+
+        .btn {
+          padding: 11px 22px;
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Very small phones */
+      @media (max-width: 390px) {
+
+        .hero::before {
+          width: 100%;
+          height: 100%;
+          top: 52%;
+        }
+
+        .nav-left {
+          gap: 10px;
+        }
+
+        nav a {
+          font-size: 0.9rem;
+          font-weight: 700;
+        }
+
+        .btn {
+          padding: 10px 18px;
+        }
+
+        .top-right-button {
+          top: 10px;
+          left: 50%;
+          transform: translateX(80px);
+        }
       }
 
     </style>
-
   </head>
 
   <body>
 
-    <div class="homepage">
+    <section class="hero">
 
-      <!-- HERO IMAGE -->
+      <nav>
 
-      <img
-        src="/images/hero/rlt-homepage-hero-master.png"
-        alt="RLT Music & Filmworks"
-        class="hero-image"
-      />
+        <div class="nav-left">
+          <a href="/">HOME</a>
+          <a href="/store">STORE</a>
+          <a href="/cart">CART</a>
+        </div>
 
-      <!-- OVERLAY -->
-
-      <div class="overlay"></div>
-
-      <!-- TOP NAVIGATION -->
-
-      <nav class="top-nav">
-        <a href="/">HOME</a>
-        <a href="/store">STORE</a>
-        <a href="/cart">CART</a>
       </nav>
 
-      <!-- SHOP NOW -->
+      <div class="top-right-button">
 
-      <div class="download-link">
-        <a href="/store">
+        <a href="/store" class="btn btn-primary">
           SHOP NOW
         </a>
+
       </div>
 
-    </div>
+      <div class="hero-content"></div>
+
+    </section>
 
   </body>
 </html>

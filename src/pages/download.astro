@@ -1,31 +1,84 @@
 ---
 ---
+---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Download The Funk Strut</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download – OZONE The Funk Strut</title>
+
+    <style>
+      body{
+        margin:0;
+        font-family:Arial, Helvetica, sans-serif;
+        background:#000;
+        color:#fff;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        text-align:center;
+      }
+
+      .download-box{
+        background:rgba(255,255,255,0.06);
+        border:1px solid rgba(255,255,255,0.15);
+        padding:60px;
+        border-radius:24px;
+        max-width:700px;
+        width:90%;
+        backdrop-filter:blur(12px);
+      }
+
+      h1{
+        font-size:3rem;
+        margin-bottom:20px;
+        color:#ffd700;
+      }
+
+      p{
+        font-size:1.2rem;
+        margin-bottom:35px;
+        line-height:1.6;
+      }
+
+      .download-btn{
+        display:inline-block;
+        padding:18px 40px;
+        font-size:1.1rem;
+        font-weight:bold;
+        text-decoration:none;
+        color:#000;
+        background:#ffd700;
+        border-radius:14px;
+        transition:0.3s ease;
+      }
+
+      .download-btn:hover{
+        transform:scale(1.05);
+      }
+    </style>
   </head>
 
-  <body style="background:black;color:white;text-align:center;padding:60px;font-family:Arial;">
-    <h1>Thank You For Your Purchase</h1>
+  <body>
 
-    <p>Download OZONE – The Funk Strut below.</p>
+    <div class="download-box">
+      <h1>DOWNLOAD READY</h1>
 
-    <a
-      href="/downloads/The-Funk-Strut.zip"
-      download
-      style="
-        display:inline-block;
-        padding:15px 30px;
-        background:#FFD700;
-        color:black;
-        text-decoration:none;
-        font-weight:bold;
-        border-radius:8px;
-      "
-    >
-      Download ZIP
-    </a>
+      <p>
+        Thank you for supporting OZONE and RLT Music & Film Works.
+        Click below to download your MP3.
+      </p>
+
+      <a
+        class="download-btn"
+        href="/downloads/the-funk-strut.zip"
+        download
+      >
+        DOWNLOAD NOW
+      </a>
+    </div>
+
   </body>
 </html>
