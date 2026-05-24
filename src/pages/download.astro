@@ -137,14 +137,6 @@
         opacity:1;
       }
 
-      .thank-you-message{
-        margin-top:18px;
-        color:#ffffff;
-        font-size:0.95rem;
-        line-height:1.7;
-        opacity:0.9;
-      }
-
       .footer{
         margin-top:45px;
 
@@ -152,7 +144,7 @@
 
         font-size:.95rem;
 
-        line-height:1.7;
+        line-height:1.9;
       }
 
       @media(max-width:768px){
@@ -209,14 +201,14 @@
         Your download has started.
       </div>
 
-      <div class="thank-you-message">
-        Thank you for supporting OZONE and RLT Music & Film Works.
-        We truly appreciate your support of independent funk and soul music.
-      </div>
-
       <div class="footer">
+        Licensed Download Reference: RLT-FUNK-STRUT<br />
+        Maximum Downloads Allowed: 2<br /><br />
+
+        Download limit reached. Please contact customer support for assistance.<br /><br />
+
         OZONE • RLT Music & Film Works<br />
-        Independent Music & Film Production
+        Funk Lives On!
       </div>
 
     </div>
@@ -230,30 +222,32 @@
         document.getElementById('statusMessage');
 
       const downloadKey =
-        'the-funk-strut-download-used';
+        'the-funk-strut-download-count';
 
-      function markUsed(){
+      let currentCount =
+        parseInt(localStorage.getItem(downloadKey) || '0');
+
+      function markExpired(){
 
         downloadButton.classList.add('disabled');
 
+        downloadButton.style.pointerEvents = 'none';
+
         downloadButton.textContent =
-          'DOWNLOAD ALREADY USED';
+          'DOWNLOAD LIMIT REACHED';
 
         downloadButton.removeAttribute('href');
 
         statusMessage.textContent =
-          'This download has already been used on this device.';
+          'Download limit reached. Please contact customer support for assistance.';
 
         statusMessage.classList.add('show');
       }
 
-      /* CHECK IF DOWNLOAD ALREADY USED */
+      /* CHECK DOWNLOAD COUNT */
 
-      if(
-        localStorage.getItem(downloadKey) === 'yes' ||
-        sessionStorage.getItem(downloadKey) === 'yes'
-      ){
-        markUsed();
+      if(currentCount >= 2){
+        markExpired();
       }
 
       /* HANDLE DOWNLOAD */
@@ -262,29 +256,29 @@
 
         e.preventDefault();
 
-        if(
-          localStorage.getItem(downloadKey) === 'yes' ||
-          sessionStorage.getItem(downloadKey) === 'yes'
-        ){
+        currentCount =
+          parseInt(localStorage.getItem(downloadKey) || '0');
+
+        if(currentCount >= 2){
+          markExpired();
           return;
         }
 
-        /* MARK USED */
+        currentCount++;
 
-        localStorage.setItem(downloadKey, 'yes');
-        sessionStorage.setItem(downloadKey, 'yes');
+        localStorage.setItem(downloadKey, currentCount);
 
         downloadButton.classList.add('disabled');
+
+        downloadButton.style.pointerEvents = 'none';
 
         downloadButton.textContent =
           'DOWNLOAD STARTED';
 
         statusMessage.textContent =
-          'Download started successfully. You will return to the homepage shortly.';
+          `Download ${currentCount} of 2 started successfully. You will return to the homepage shortly.`;
 
         statusMessage.classList.add('show');
-
-        /* START DOWNLOAD */
 
         const link = document.createElement('a');
 
@@ -299,8 +293,6 @@
         link.click();
 
         document.body.removeChild(link);
-
-        /* REDIRECT AFTER DOWNLOAD */
 
         setTimeout(() => {
 
