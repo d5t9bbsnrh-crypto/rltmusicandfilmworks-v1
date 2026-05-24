@@ -45,6 +45,7 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
+        background-color: #000;
       }
 
       .top-nav {
@@ -183,11 +184,6 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
       }
 
       @media (max-width: 600px) {
-        .page {
-          background-size: cover;
-          background-position: center center;
-        }
-
         .top-nav {
           width: calc(100% - 28px);
           top: 12px;
@@ -204,14 +200,6 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
           padding-top: 76px;
         }
 
-        .listen-wrap {
-          right: 6%;
-          top: 50%;
-          bottom: auto;
-          left: auto;
-          transform: translateY(-50%);
-        }
-
         .listen-button {
           padding: 11px 18px;
           font-size: 0.76rem;
@@ -221,6 +209,66 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
 
         .listen-status {
           font-size: 0.72rem;
+        }
+      }
+
+      /*
+        PHONE PORTRAIT ONLY:
+        This downsizes the homepage image and centers the Listen/Pause button
+        under the OZONE image.
+      */
+      @media (max-width: 700px) and (orientation: portrait) {
+        .page {
+          min-height: 100svh;
+          background-size: 92% auto;
+          background-position: center 82px;
+          background-repeat: no-repeat;
+        }
+
+        .hero-content {
+          min-height: 100svh;
+          padding: 76px 16px 30px;
+        }
+
+        .listen-wrap {
+          left: 50%;
+          right: auto;
+          top: 72%;
+          bottom: auto;
+          transform: translateX(-50%);
+          width: auto;
+        }
+
+        .listen-button {
+          padding: 10px 18px;
+          font-size: 0.74rem;
+        }
+      }
+
+      @media (max-width: 430px) and (orientation: portrait) {
+        .page {
+          background-size: 88% auto;
+          background-position: center 86px;
+        }
+
+        .listen-wrap {
+          top: 71%;
+        }
+      }
+
+      @media (max-width: 390px) and (orientation: portrait) {
+        .page {
+          background-size: 84% auto;
+          background-position: center 88px;
+        }
+
+        .listen-wrap {
+          top: 70%;
+        }
+
+        .listen-button {
+          padding: 9px 15px;
+          font-size: 0.68rem;
         }
       }
 

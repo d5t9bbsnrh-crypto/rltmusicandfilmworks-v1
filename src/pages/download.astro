@@ -1,6 +1,3 @@
----
----
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -140,6 +137,14 @@
         opacity:1;
       }
 
+      .thank-you-message{
+        margin-top:18px;
+        color:#ffffff;
+        font-size:0.95rem;
+        line-height:1.7;
+        opacity:0.9;
+      }
+
       .footer{
         margin-top:45px;
 
@@ -202,6 +207,11 @@
 
       <div id="statusMessage" class="status-message">
         Your download has started.
+      </div>
+
+      <div class="thank-you-message">
+        Thank you for supporting OZONE and RLT Music & Film Works.
+        We truly appreciate your support of independent funk and soul music.
       </div>
 
       <div class="footer">
@@ -270,7 +280,7 @@
           'DOWNLOAD STARTED';
 
         statusMessage.textContent =
-          'Your download is starting...';
+          'Download started successfully. You will return to the homepage shortly.';
 
         statusMessage.classList.add('show');
 
@@ -296,7 +306,7 @@
 
           window.location.href = '/';
 
-        }, 1500);
+        }, 4000);
 
       });
 
