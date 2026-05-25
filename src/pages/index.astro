@@ -155,6 +155,66 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
         text-align: center;
       }
 
+      /* FLASHING BUY NOW BUTTON */
+
+      .buy-now-wrap {
+        position: relative;
+        margin-top: 14px;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        z-index: 40;
+      }
+
+      .buy-now-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 18px 46px;
+
+        border-radius: 999px;
+        border: 2px solid #ff0000;
+
+        background: #000000;
+        color: #ffffff;
+
+        text-decoration: none;
+
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        font-weight: 900;
+        letter-spacing: 0.18em;
+
+        box-shadow:
+          0 0 18px rgba(255, 0, 0, 0.75),
+          0 0 42px rgba(255, 0, 0, 0.45);
+
+        animation: buyFlash 1s infinite alternate;
+      }
+
+      @keyframes buyFlash {
+
+        0% {
+          background: #000000;
+
+          box-shadow:
+            0 0 10px rgba(255, 0, 0, 0.35),
+            0 0 22px rgba(255, 0, 0, 0.18);
+
+          transform: scale(1);
+        }
+
+        100% {
+          background: #ff0000;
+
+          box-shadow:
+            0 0 24px rgba(255, 0, 0, 1),
+            0 0 60px rgba(255, 0, 0, 0.85);
+
+          transform: scale(1.05);
+        }
+      }
+
       .site-footer{
         position:absolute;
         bottom:18px;
@@ -227,6 +287,11 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
         .listen-status {
           font-size: 0.72rem;
         }
+
+        .buy-now-button {
+          padding: 14px 32px;
+          font-size: 0.9rem;
+        }
       }
 
       @media (max-width: 700px) and (orientation: portrait) {
@@ -282,6 +347,11 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
           padding: 9px 15px;
           font-size: 0.68rem;
         }
+
+        .buy-now-button {
+          padding: 12px 24px;
+          font-size: 0.8rem;
+        }
       }
 
       @media (orientation: landscape) and (max-height: 520px) {
@@ -329,6 +399,19 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
           </button>
 
           <div id="listenStatus" class="listen-status" aria-live="polite"></div>
+
+          <!-- FLASHING BUY NOW BUTTON -->
+
+          <div class="buy-now-wrap">
+            <a
+              href="https://buy.stripe.com/00w3cxdsR90U1eI2xGcfK03"
+              class="buy-now-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BUY NOW
+            </a>
+          </div>
 
           <audio id="funkAudio" preload="auto">
             <source src={audioSrc} type="audio/mpeg" />
