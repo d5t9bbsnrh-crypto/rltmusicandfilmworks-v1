@@ -1,9 +1,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
-    <title>Download – OZONE The Funk Strut</title>
+    <title>
+      Download – OZONE The Funk Strut
+    </title>
 
     <style>
 
@@ -29,7 +34,10 @@
         inset:0;
 
         background-image:
-          linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+          linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.75)
+          ),
           url('/images/hero/rlt-homepage-hero-master.png');
 
         background-size:cover;
@@ -86,9 +94,15 @@
       .download-btn{
         display:inline-block;
 
-        background:linear-gradient(135deg,#ffd700,#ffb700);
+        background:
+          linear-gradient(
+            135deg,
+            #ffd700,
+            #ffb700
+          );
 
         color:#000;
+
         text-decoration:none;
 
         padding:22px 55px;
@@ -179,13 +193,24 @@
 
     <div class="download-box">
 
-      <h1>DOWNLOAD READY</h1>
+      <h1>
+        DOWNLOAD READY
+      </h1>
 
       <p>
-        Thank you for supporting OZONE and RLT Music & Film Works.
-        Your purchase is complete and your download is now ready.
-        Click below to instantly download
-        <strong>“The Funk Strut”</strong>.
+        Thank you for supporting
+        OZONE and RLT Music &
+        Film Works.
+
+        Your purchase is complete
+        and your download is now
+        ready.
+
+        Click below to instantly
+        download
+        <strong>
+          “The Funk Strut”
+        </strong>.
       </p>
 
       <a
@@ -197,18 +222,44 @@
         DOWNLOAD NOW
       </a>
 
-      <div id="statusMessage" class="status-message">
+      <div
+        id="statusMessage"
+        class="status-message"
+      >
         Your download has started.
       </div>
 
       <div class="footer">
-        Licensed Download Reference: RLT-FUNK-STRUT<br />
-        Maximum Downloads Allowed: 2<br /><br />
 
-        Download limit reached. Please contact customer support for assistance.<br /><br />
+        Licensed Download
+        Reference:
+        RLT-FUNK-STRUT
 
-        OZONE • RLT Music & Film Works<br />
-        Funk Lives On!
+        <br />
+
+        Maximum Downloads Allowed:
+        3
+
+        <br /><br />
+
+        Download limit reached.
+        Please contact customer
+        support for assistance.
+
+        <br /><br />
+
+        Download access expires
+        after 24 hours.
+
+        <br /><br />
+
+        &copy; 2026 RLT Music & Film Works 
+        
+
+        <br />
+
+        All Rights Reserved.
+
       </div>
 
     </div>
@@ -216,91 +267,222 @@
     <script>
 
       const downloadButton =
-        document.getElementById('downloadButton');
+        document.getElementById(
+          'downloadButton'
+        );
 
       const statusMessage =
-        document.getElementById('statusMessage');
+        document.getElementById(
+          'statusMessage'
+        );
 
       const downloadKey =
         'the-funk-strut-download-count';
 
+      const expirationKey =
+        'the-funk-strut-download-created';
+
+      const MAX_DOWNLOADS = 3;
+
+      const EXPIRATION_HOURS = 24;
+
+      const EXPIRATION_MS =
+        EXPIRATION_HOURS *
+        60 *
+        60 *
+        1000;
+
+      let createdTime =
+        localStorage.getItem(
+          expirationKey
+        );
+
+      // CREATE FIRST DOWNLOAD RECORD
+
+      if(!createdTime){
+
+        createdTime =
+          Date.now();
+
+        localStorage.setItem(
+          expirationKey,
+          createdTime
+        );
+
+      }
+
+      // CHECK EXPIRATION
+
+      const expired =
+
+        Date.now() -
+
+        parseInt(createdTime)
+
+        >
+
+        EXPIRATION_MS;
+
       let currentCount =
-        parseInt(localStorage.getItem(downloadKey) || '0');
 
-      function markExpired(){
+        parseInt(
 
-        downloadButton.classList.add('disabled');
+          localStorage.getItem(
+            downloadKey
+          ) || '0'
 
-        downloadButton.style.pointerEvents = 'none';
+        );
+
+      function markExpired(message){
+
+        downloadButton.classList.add(
+          'disabled'
+        );
+
+        downloadButton.style.pointerEvents =
+          'none';
 
         downloadButton.textContent =
-          'DOWNLOAD LIMIT REACHED';
+          'DOWNLOAD UNAVAILABLE';
 
-        downloadButton.removeAttribute('href');
+        downloadButton.removeAttribute(
+          'href'
+        );
 
         statusMessage.textContent =
-          'Download limit reached. Please contact customer support for assistance.';
+          message;
 
-        statusMessage.classList.add('show');
+        statusMessage.classList.add(
+          'show'
+        );
+
       }
 
-      /* CHECK DOWNLOAD COUNT */
+      // TOKEN EXPIRED
 
-      if(currentCount >= 2){
-        markExpired();
+      if(expired){
+
+        markExpired(
+
+          'Your secure download window has expired.'
+
+        );
+
       }
 
-      /* HANDLE DOWNLOAD */
+      // DOWNLOAD LIMIT REACHED
 
-      downloadButton.addEventListener('click', (e) => {
+      else if(
 
-        e.preventDefault();
+        currentCount >=
+        MAX_DOWNLOADS
 
-        currentCount =
-          parseInt(localStorage.getItem(downloadKey) || '0');
+      ){
 
-        if(currentCount >= 2){
-          markExpired();
-          return;
+        markExpired(
+
+          'Download limit reached. Please contact customer support for assistance.'
+
+        );
+
+      }
+
+      // HANDLE DOWNLOAD
+
+      downloadButton.addEventListener(
+
+        'click',
+
+        (e) => {
+
+          e.preventDefault();
+
+          currentCount =
+
+            parseInt(
+
+              localStorage.getItem(
+                downloadKey
+              ) || '0'
+
+            );
+
+          if(
+
+            currentCount >=
+            MAX_DOWNLOADS
+
+          ){
+
+            markExpired(
+
+              'Download limit reached. Please contact customer support for assistance.'
+
+            );
+
+            return;
+
+          }
+
+          currentCount++;
+
+          localStorage.setItem(
+
+            downloadKey,
+
+            currentCount
+
+          );
+
+          downloadButton.classList.add(
+            'disabled'
+          );
+
+          downloadButton.style.pointerEvents =
+            'none';
+
+          downloadButton.textContent =
+            'DOWNLOAD STARTED';
+
+          statusMessage.textContent =
+
+            `Download ${currentCount} of ${MAX_DOWNLOADS} started successfully. You will return to the homepage shortly.`;
+
+          statusMessage.classList.add(
+            'show'
+          );
+
+          const link =
+
+            document.createElement('a');
+
+          link.href =
+
+            '/api/download/The-Funk-Strut.zip';
+
+          link.download =
+
+            'The-Funk-Strut.zip';
+
+          document.body.appendChild(
+            link
+          );
+
+          link.click();
+
+          document.body.removeChild(
+            link
+          );
+
+          setTimeout(() => {
+
+            window.location.href = '/';
+
+          }, 4000);
+
         }
 
-        currentCount++;
-
-        localStorage.setItem(downloadKey, currentCount);
-
-        downloadButton.classList.add('disabled');
-
-        downloadButton.style.pointerEvents = 'none';
-
-        downloadButton.textContent =
-          'DOWNLOAD STARTED';
-
-        statusMessage.textContent =
-          `Download ${currentCount} of 2 started successfully. You will return to the homepage shortly.`;
-
-        statusMessage.classList.add('show');
-
-        const link = document.createElement('a');
-
-        link.href =
-          '/api/download/The-Funk-Strut.zip';
-
-        link.download =
-          'The-Funk-Strut.zip';
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        document.body.removeChild(link);
-
-        setTimeout(() => {
-
-          window.location.href = '/';
-
-        }, 4000);
-
-      });
+      );
 
     </script>
 
