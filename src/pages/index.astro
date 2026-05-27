@@ -1,4 +1,5 @@
 ---
+import Navbar from "../components/Navbar.astro";
 const audioSrc = "/audio/the-funk-strut-preview.mp3";
 ---
 
@@ -6,494 +7,408 @@ const audioSrc = "/audio/the-funk-strut-preview.mp3";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>RLT Music & Film Works</title>
 
     <style>
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
 
       html,
       body {
-        margin: 0;
-        padding: 0;
         width: 100%;
         min-height: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
         font-family: Georgia, "Times New Roman", serif;
         background: #000;
         color: #fff;
-        overflow-x: hidden;
       }
 
       body {
-        min-height: 100vh;
+        position: relative;
       }
 
       .page {
         position: relative;
-        min-height: 100vh;
         width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #000;
+      }
+
+      /* BLACK BACKGROUND */
+
+      .hero-bg {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 0;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
+      }
+
+      header {
+        width: 100%;
+        padding: 26px 46px;
+        display: flex;
         align-items: center;
-        background-image:
-          linear-gradient(
-            rgba(0, 0, 0, 0.18),
-            rgba(0, 0, 0, 0.42)
-          ),
-          url("/images/hero/rlt-homepage-hero-master.png");
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-color: #000;
+        justify-content: center;
+        border-bottom: 1px solid rgba(255,255,255,.18);
       }
 
       .top-nav {
-        position: fixed;
-        top: 18px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 20;
         display: flex;
-        justify-content: center;
         align-items: center;
-        gap: clamp(18px, 3vw, 42px);
-        padding: 10px 20px;
-        border-radius: 999px;
-        background: rgba(0, 0, 0, 0.34);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 215, 120, 0.28);
+        gap: 60px;
       }
 
-      .top-nav a {
-        color: #fff7d6;
+      .top-nav a,
+      .footer-nav a {
+        color: #fff;
         text-decoration: none;
-        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+        font-size: 1rem;
         font-weight: 700;
-        letter-spacing: 0.16em;
-        text-shadow:
-          0 0 8px rgba(255, 214, 98, 0.85),
-          0 2px 8px rgba(0, 0, 0, 0.95);
-        transition: color 0.2s ease, transform 0.2s ease;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        transition:
+          color .25s ease,
+          text-shadow .25s ease;
       }
 
-      .top-nav a:hover {
-        color: #ffd36a;
-        transform: translateY(-1px);
+      .top-nav a:hover,
+      .footer-nav a:hover {
+        color: #ffdfdf;
+        text-shadow: 0 0 12px rgba(255,65,65,.8);
       }
 
-      .hero-content {
-        width: 100%;
-        min-height: 100vh;
-        position: relative;
+      main {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 90px 22px 40px;
+        padding: 60px 24px;
       }
 
-      .listen-wrap {
-        position: absolute;
-        right: 8%;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
+      .hero {
+        width: min(1400px, 96vw);
+      }
+
+      /* HERO LAYOUT */
+
+      .hero-layout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: nowrap;
+      }
+
+      .hero-img-wrap {
+        width: min(980px, 78vw);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid rgba(255,255,255,.16);
+        background: rgba(0,0,0,.45);
+        box-shadow: 0 0 35px rgba(255,255,255,.08);
+      }
+
+      .hero-img-wrap img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .side-buttons {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        gap: 18px;
+        margin-left: -6px;
       }
 
-      .listen-button {
-        cursor: pointer;
-        border: 1px solid rgba(255, 221, 135, 0.82);
-        border-radius: 999px;
-        padding: 13px 28px;
-        color: #fff7dc;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        background:
-          radial-gradient(circle at top, rgba(255, 215, 128, 0.22), transparent 42%),
-          linear-gradient(135deg, rgba(30, 18, 5, 0.92), rgba(0, 0, 0, 0.82));
-        box-shadow:
-          0 0 16px rgba(255, 204, 92, 0.52),
-          0 0 34px rgba(255, 204, 92, 0.24),
-          inset 0 0 12px rgba(255, 255, 255, 0.08);
-        text-shadow:
-          0 0 8px rgba(255, 214, 98, 0.8),
-          0 2px 8px rgba(0, 0, 0, 0.95);
-        transition:
-          transform 0.18s ease,
-          box-shadow 0.18s ease,
-          border-color 0.18s ease;
-      }
-
-      .listen-button:hover {
-        transform: translateY(-2px);
-        border-color: rgba(255, 230, 160, 1);
-        box-shadow:
-          0 0 20px rgba(255, 210, 106, 0.7),
-          0 0 44px rgba(255, 210, 106, 0.34),
-          inset 0 0 14px rgba(255, 255, 255, 0.1);
-      }
-
-      .listen-button:active {
-        transform: translateY(0);
-      }
-
-      .listen-status {
-        min-height: 20px;
-        color: #ffe9a6;
-        font-size: 0.82rem;
-        letter-spacing: 0.08em;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
-        opacity: 0.92;
-        text-align: center;
-      }
-
-      /* FLASHING BUY NOW BUTTON */
-
-      .buy-now-wrap {
-        position: relative;
-        margin-top: 14px;
-        left: auto;
-        bottom: auto;
-        transform: none;
-        z-index: 40;
-      }
-
-      .buy-now-button {
+      .buy-btn,
+      .listen-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-
-        padding: 18px 46px;
-
+        width: 260px;
+        padding: 20px 32px;
         border-radius: 999px;
-        border: 2px solid #ff0000;
-
-        background: #000000;
-        color: #ffffff;
-
+        border: 2px solid #fff;
+        color: #fff;
         text-decoration: none;
-
-        font-size: clamp(1rem, 2vw, 1.2rem);
-        font-weight: 900;
-        letter-spacing: 0.18em;
-
-        box-shadow:
-          0 0 18px rgba(255, 0, 0, 0.75),
-          0 0 42px rgba(255, 0, 0, 0.45);
-
-        animation: buyFlash 1s infinite alternate;
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          transform .25s ease,
+          box-shadow .25s ease;
       }
 
-      @keyframes buyFlash {
+      .buy-btn {
+        background: linear-gradient(
+          180deg,
+          #ff1a1a 0%,
+          #b30000 35%,
+          #1a0000 72%,
+          #000000 100%
+        );
+
+        border: 2px solid rgba(255,255,255,.95);
+
+        color: #fff;
+
+        box-shadow:
+          0 0 12px rgba(255,0,0,.75),
+          0 0 28px rgba(255,0,0,.95),
+          0 0 50px rgba(0,0,0,.95),
+          inset 0 2px 10px rgba(255,255,255,.25),
+          inset 0 -10px 18px rgba(0,0,0,.75);
+
+        position: relative;
+        overflow: hidden;
+
+        animation: blackRedFlash 1s infinite alternate;
+      }
+
+      @keyframes blackRedFlash {
 
         0% {
-          background: #000000;
+          background: linear-gradient(
+            180deg,
+            #ff1a1a 0%,
+            #8b0000 45%,
+            #140000 75%,
+            #000000 100%
+          );
 
           box-shadow:
-            0 0 10px rgba(255, 0, 0, 0.35),
-            0 0 22px rgba(255, 0, 0, 0.18);
+            0 0 8px rgba(255,0,0,.55),
+            0 0 18px rgba(255,0,0,.65),
+            0 0 34px rgba(0,0,0,.95);
 
           transform: scale(1);
         }
 
         100% {
-          background: #ff0000;
+          background: linear-gradient(
+            180deg,
+            #ff4d4d 0%,
+            #ff0000 38%,
+            #300000 72%,
+            #000000 100%
+          );
 
           box-shadow:
-            0 0 24px rgba(255, 0, 0, 1),
-            0 0 60px rgba(255, 0, 0, 0.85);
+            0 0 18px rgba(255,255,255,.55),
+            0 0 34px rgba(255,0,0,1),
+            0 0 70px rgba(255,0,0,.95),
+            0 0 90px rgba(0,0,0,1);
 
           transform: scale(1.05);
         }
       }
 
-      .site-footer{
-        position:absolute;
-        bottom:18px;
-        left:50%;
-        transform:translateX(-50%);
-        z-index:50;
-
-        color:#ffffff;
-        font-size:14px;
-        letter-spacing:.08em;
-        text-align:center;
-
-        text-shadow:
-          0 0 8px rgba(0,0,0,.9),
-          0 2px 10px rgba(0,0,0,.95);
+      .listen-btn {
+        background: rgba(255,255,255,.08);
+        backdrop-filter: blur(6px);
+        box-shadow:
+          0 0 18px rgba(255,255,255,.25),
+          inset 0 0 12px rgba(255,255,255,.08);
       }
 
-      audio {
+      .buy-btn:hover,
+      .listen-btn:hover {
+        transform: translateY(-3px) scale(1.03);
+
+        box-shadow:
+          0 0 18px rgba(255,255,255,.85),
+          0 0 34px rgba(255,0,0,.95),
+          0 0 55px rgba(255,40,40,.75);
+      }
+
+      .audio-player {
+        margin-top: 8px;
         display: none;
       }
 
+      .audio-player audio {
+        width: min(320px, 90vw);
+      }
+
+      footer {
+        padding: 26px 24px 30px;
+        border-top: 1px solid rgba(255,255,255,.18);
+        text-align: center;
+      }
+
+      .footer-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+
+      footer p {
+        color: rgba(255,255,255,.7);
+        font-size: .95rem;
+        letter-spacing: .03em;
+      }
+
+      /* MOBILE */
+
       @media (max-width: 900px) {
-        .page {
-          background-position: center center;
+
+        .hero-layout {
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .hero-img-wrap {
+          width: 96vw;
+        }
+
+        .side-buttons {
+          width: 100%;
+          margin-left: 0;
+        }
+
+        .buy-btn,
+        .listen-btn {
+          width: 100%;
+          max-width: 340px;
+          font-size: 1rem;
+        }
+
+        header {
+          padding: 18px 20px;
         }
 
         .top-nav {
-          top: 14px;
-          gap: 18px;
-          padding: 9px 16px;
+          gap: 24px;
+          flex-wrap: wrap;
+          justify-content: center;
         }
 
-        .listen-wrap {
-          right: 6%;
-          top: 50%;
-          bottom: auto;
-          left: auto;
-          transform: translateY(-50%);
-        }
-
-        .listen-button {
-          padding: 12px 22px;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .top-nav {
-          width: calc(100% - 28px);
-          top: 12px;
-          gap: 14px;
-          padding: 9px 12px;
-        }
-
-        .top-nav a {
-          font-size: 0.78rem;
-          letter-spacing: 0.12em;
-        }
-
-        .hero-content {
-          padding-top: 76px;
-        }
-
-        .listen-button {
-          padding: 11px 18px;
-          font-size: 0.76rem;
-          letter-spacing: 0.06em;
-          white-space: nowrap;
-        }
-
-        .listen-status {
-          font-size: 0.72rem;
-        }
-
-        .buy-now-button {
-          padding: 14px 32px;
-          font-size: 0.9rem;
-        }
-      }
-
-      @media (max-width: 700px) and (orientation: portrait) {
-        .page {
-          min-height: 100svh;
-          background-size: 92% auto;
-          background-position: center 82px;
-          background-repeat: no-repeat;
-        }
-
-        .hero-content {
-          min-height: 100svh;
-          padding: 76px 16px 30px;
-        }
-
-        .listen-wrap {
-          left: 50%;
-          right: auto;
-          top: 72%;
-          bottom: auto;
-          transform: translateX(-50%);
-          width: auto;
-        }
-
-        .listen-button {
-          padding: 10px 18px;
-          font-size: 0.74rem;
-        }
-      }
-
-      @media (max-width: 430px) and (orientation: portrait) {
-        .page {
-          background-size: 88% auto;
-          background-position: center 86px;
-        }
-
-        .listen-wrap {
-          top: 71%;
-        }
-      }
-
-      @media (max-width: 390px) and (orientation: portrait) {
-        .page {
-          background-size: 84% auto;
-          background-position: center 88px;
-        }
-
-        .listen-wrap {
-          top: 70%;
-        }
-
-        .listen-button {
-          padding: 9px 15px;
-          font-size: 0.68rem;
-        }
-
-        .buy-now-button {
-          padding: 12px 24px;
-          font-size: 0.8rem;
-        }
-      }
-
-      @media (orientation: landscape) and (max-height: 520px) {
-        .top-nav {
-          top: 10px;
-          padding: 7px 14px;
-        }
-
-        .hero-content {
-          padding-top: 62px;
-        }
-
-        .listen-wrap {
-          right: 6%;
-          top: 50%;
-          bottom: auto;
-          left: auto;
-          transform: translateY(-50%);
-        }
-
-        .listen-button {
-          padding: 9px 18px;
-          font-size: 0.72rem;
-        }
-
-        .listen-status {
-          display: none;
+        main {
+          padding-top: 40px;
         }
       }
     </style>
   </head>
 
   <body>
-    <main class="page">
-      <nav class="top-nav" aria-label="Main navigation">
-        <a href="/">HOME</a>
-        <a href="/store">STORE</a>
-        <a href="/cart">CART</a>
-      </nav>
 
-      <section class="hero-content" aria-label="RLT Music and Film Works homepage">
-        <div class="listen-wrap">
-          <button id="listenButton" class="listen-button" type="button">
-            ♫♫ Listen to ♫♫
-          </button>
+    <div class="page">
 
-          <div id="listenStatus" class="listen-status" aria-live="polite"></div>
+      <div class="hero-bg" aria-hidden="true"></div>
 
-          <!-- FLASHING BUY NOW BUTTON -->
+      <div class="content">
 
-          <div class="buy-now-wrap">
-            <a
-              href="https://buy.stripe.com/00w3cxdsR90U1eI2xGcfK03"
-              class="buy-now-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              BUY NOW
-            </a>
-          </div>
+        <header>
 
-          <audio id="funkAudio" preload="auto">
-            <source src={audioSrc} type="audio/mpeg" />
-          </audio>
-        </div>
-      </section>
+          <nav class="top-nav" aria-label="Main navigation">
+            <a href="/">HOME</a>
+            <a href="/store">STORE</a>
+            <a href="/cart">CART</a>
+          </nav>
 
-      <footer class="site-footer">
-        © 2026 RLT Music & Film Works. All Rights Reserved.
-      </footer>
-    </main>
+        </header>
 
-    <script is:inline>
-      const audio = document.getElementById("funkAudio");
+        <main>
+
+          <section class="hero">
+
+            <div class="hero-layout">
+
+              <div class="hero-img-wrap">
+                <img
+                  src="/images/hero/rlt-homepage-hero-master.png"
+                  alt="RLT Music & Film Works"
+                />
+              </div>
+
+              <div class="side-buttons">
+
+                <button
+                  class="listen-btn"
+                  id="listenButton"
+                  type="button"
+                >
+                  ♫ LISTEN TO ♫
+                </button>
+
+                <div class="audio-player" id="audioPlayer">
+                  <audio controls>
+                    <source src={audioSrc} type="audio/mpeg" />
+                  </audio>
+                </div>
+
+                <a
+                  class="buy-btn"
+                  href="https://buy.stripe.com/00w3cxdsR90U1eI2xGcfK03"
+                >
+                  BUY NOW
+                </a>
+
+              </div>
+
+            </div>
+
+          </section>
+
+        </main>
+
+        <footer>
+
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/">HOME</a>
+            <a href="/store">STORE</a>
+            <a href="/cart">CART</a>
+          </nav>
+
+          <p>
+            © 2026 RLT Music &amp; Film Works.
+            All Rights Reserved.
+          </p>
+
+        </footer>
+
+      </div>
+
+    </div>
+
+    <script>
       const listenButton = document.getElementById("listenButton");
-      const listenStatus = document.getElementById("listenStatus");
+      const audioPlayer = document.getElementById("audioPlayer");
 
-      let hasPlayedOnce = false;
+      if (listenButton && audioPlayer) {
+        listenButton.addEventListener("click", () => {
+          audioPlayer.style.display = "block";
 
-      function resetAudioToStart() {
-        if (!audio) return;
+          const audio = audioPlayer.querySelector("audio");
 
-        try {
-          audio.currentTime = 0;
-        } catch (error) {
-          console.warn("Audio reset was not available yet.", error);
-        }
-      }
-
-      async function toggleAudio() {
-        if (!audio || !listenButton || !listenStatus) return;
-
-        audio.volume = 1;
-
-        if (!audio.paused) {
-          audio.pause();
-          listenButton.textContent = "♫♫ Listen to ♫♫";
-          listenStatus.textContent = "Paused";
-          return;
-        }
-
-        try {
-          if (!hasPlayedOnce || audio.ended) {
-            resetAudioToStart();
+          if (audio) {
+            audio.play();
           }
-
-          await audio.play();
-          hasPlayedOnce = true;
-          listenButton.textContent = "❚❚ Pause";
-          listenStatus.textContent = "Now playing The Funk Strut";
-        } catch (error) {
-          listenButton.textContent = "♫♫ Listen to ♫♫";
-          listenStatus.textContent = "Tap Listen again to start audio";
-          console.warn("Audio playback was blocked or failed.", error);
-        }
-      }
-
-      if (listenButton && audio) {
-        listenButton.addEventListener("click", toggleAudio);
-
-        audio.addEventListener("ended", () => {
-          listenButton.textContent = "♫♫ Listen to ♫♫";
-          listenStatus.textContent = "Tap Listen to play again";
-        });
-
-        audio.addEventListener("pause", () => {
-          if (
-            listenStatus &&
-            hasPlayedOnce &&
-            audio.currentTime > 0 &&
-            !audio.ended
-          ) {
-            listenButton.textContent = "♫♫ Listen to ♫♫";
-            listenStatus.textContent = "Paused";
-          }
-        });
-
-        audio.addEventListener("play", () => {
-          listenButton.textContent = "❚❚ Pause";
-          listenStatus.textContent = "Now playing The Funk Strut";
         });
       }
     </script>
+
   </body>
 </html>

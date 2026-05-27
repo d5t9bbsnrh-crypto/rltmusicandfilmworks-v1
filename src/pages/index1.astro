@@ -1,33 +1,15 @@
 ---
+const audioSrc = "/audio/the-funk-strut-preview.mp3";
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>RLT Music & Film Works</title>
 
     <style>
-      /* =========================================
-         PAGE LOAD PROTECTION
-      ========================================= */
-
-      body {
-        visibility: hidden;
-      }
-
-      body.loaded {
-        visibility: visible;
-      }
-
-      /* =========================================
-         RESET
-      ========================================= */
-
       * {
         margin: 0;
         padding: 0;
@@ -39,125 +21,330 @@
         width: 100%;
         min-height: 100%;
         overflow-x: hidden;
-
-        font-family: Arial, Helvetica, sans-serif;
-        background: black;
-        color: white;
+        scroll-behavior: smooth;
+        font-family: Georgia, "Times New Roman", serif;
+        background: #000;
+        color: #fff;
       }
 
-      a,
-      button {
-        touch-action: manipulation;
+      body {
         position: relative;
-        z-index: 100000;
       }
 
-      /* =========================================
-         NAVIGATION
-      ========================================= */
-
-      nav {
-        width: 100%;
-        padding: 24px 50px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-
-        background: rgba(0, 0, 0, 0.35);
-        backdrop-filter: blur(10px);
-
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        z-index: 99999;
-        pointer-events: auto;
-      }
-
-      nav a {
-        color: white;
-        text-decoration: none;
-
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-
-        transition: 0.3s ease;
-      }
-
-      nav a:hover {
-        color: gold;
-        transform: scale(1.05);
-      }
-
-      /* =========================================
-         HERO
-      ========================================= */
-
-      .hero {
+      .page {
         position: relative;
-
         width: 100%;
         min-height: 100vh;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
         overflow: hidden;
+        background: #000;
       }
 
-      .hero img {
-        width: 100%;
-        height: 100vh;
+      /* BLACK BACKGROUND */
 
-        object-fit: cover;
-        object-position: center;
-
-        display: block;
-      }
-
-      /* =========================================
-         HERO OVERLAY
-      ========================================= */
-
-      .hero-overlay {
-        position: absolute;
+      .hero-bg {
+        position: fixed;
         inset: 0;
+        background: #000;
+        z-index: 0;
+      }
 
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.25),
-          rgba(0, 0, 0, 0.45)
-        );
-
+      .content {
+        position: relative;
         z-index: 2;
-
-        /* IMPORTANT FIX */
-        pointer-events: none;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* =========================================
-         CONTENT
-      ========================================= */
+      header {
+        width: 100%;
+        padding: 26px 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid rgba(255,255,255,.18);
+      }
 
-      .hero-content {
-        position: absolute;
-        z-index: 10;
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
 
+      .top-nav a,
+      .footer-nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        transition:
+          color .25s ease,
+          text-shadow .25s ease;
+      }
+
+      .top-nav a:hover,
+      .footer-nav a:hover {
+        color: #ffdfdf;
+        text-shadow: 0 0 12px rgba(255,65,65,.8);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 24px;
+      }
+
+      .hero {
+        width: min(1200px, 95vw);
+      }
+
+      /* NEW SIDE BUTTON LAYOUT */
+
+      .hero-layout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        flex-wrap: wrap;
+      }
+
+      .hero-img-wrap {
+        width: min(900px, 92vw);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid rgba(255,255,255,.16);
+        background: rgba(0,0,0,.45);
+        box-shadow: 0 0 35px rgba(255,255,255,.08);
+      }
+
+      .hero-img-wrap img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .side-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .buy-btn,
+      .listen-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 260px;
+        padding: 20px 32px;
+        border-radius: 999px;
+        border: 2px solid #fff;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          transform .25s ease,
+          box-shadow .25s ease;
+      }
+
+      .buy-btn {
+        background: #5b0b06;
+        box-shadow:
+          0 0 18px rgba(255,255,255,.45),
+          inset 0 0 18px rgba(255,255,255,.1);
+      }
+
+      .listen-btn {
+        background: rgba(255,255,255,.08);
+        backdrop-filter: blur(6px);
+        box-shadow:
+          0 0 18px rgba(255,255,255,.25),
+          inset 0 0 12px rgba(255,255,255,.08);
+      }
+
+      .buy-btn:hover,
+      .listen-btn:hover {
+        transform: translateY(-3px);
+        box-shadow:
+          0 0 22px rgba(255,255,255,.7),
+          0 0 28px rgba(255,0,0,.45);
+      }
+
+      .audio-player {
+        margin-top: 20px;
+        display: none;
+      }
+
+      .audio-player audio {
+        width: min(320px, 90vw);
+      }
+
+      footer {
+        padding: 26px 24px 30px;
+        border-top: 1px solid rgba(255,255,255,.18);
         text-align: center;
-
-        width: 90%;
-        max-width: 1200px;
-
-        pointer-events: none;
       }
 
-      .hero-content h1 {
-        font-size: clamp(2.5rem, 6vw, 6rem);
-        letter-spacing: 6px;
+      .footer-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
 
-        color: white;
-        text-shadow: 0 0 20px rgba(255
+      footer p {
+        color: rgba(255,255,255,.7);
+        font-size: .95rem;
+        letter-spacing: .03em;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 900px) {
+
+        .hero-layout {
+          flex-direction: column;
+        }
+
+        .hero-img-wrap {
+          width: 96vw;
+        }
+
+        .side-buttons {
+          width: 100%;
+        }
+
+        .buy-btn,
+        .listen-btn {
+          width: 100%;
+          max-width: 340px;
+          font-size: 1rem;
+        }
+
+        header {
+          padding: 18px 20px;
+        }
+
+        .top-nav {
+          gap: 24px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        main {
+          padding-top: 40px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page">
+
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="content">
+
+        <header>
+
+          <nav class="top-nav" aria-label="Main navigation">
+            <a href="/">HOME</a>
+            <a href="/store">STORE</a>
+            <a href="/cart">CART</a>
+          </nav>
+
+        </header>
+
+        <main>
+
+          <section class="hero">
+
+            <div class="hero-layout">
+
+              <div class="hero-img-wrap">
+                <img
+                  src="/images/hero/rlt-homepage-hero-master.png"
+                  alt="RLT Music & Film Works"
+                />
+              </div>
+
+              <div class="side-buttons">
+
+                <a
+                  class="buy-btn"
+                  href="https://buy.stripe.com/00w3cxdsR90U1eI2xGcfK03"
+                >
+                  BUY NOW
+                </a>
+
+                <button
+                  class="listen-btn"
+                  id="listenButton"
+                  type="button"
+                >
+                  LISTEN TO
+                </button>
+
+                <div class="audio-player" id="audioPlayer">
+                  <audio controls>
+                    <source src={audioSrc} type="audio/mpeg" />
+                  </audio>
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+        </main>
+
+        <footer>
+
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/">HOME</a>
+            <a href="/store">STORE</a>
+            <a href="/cart">CART</a>
+          </nav>
+
+          <p>
+            © 2026 RLT Music &amp; Film Works.
+            All Rights Reserved.
+          </p>
+
+        </footer>
+
+      </div>
+
+    </div>
+
+    <script>
+      const listenButton = document.getElementById("listenButton");
+      const audioPlayer = document.getElementById("audioPlayer");
+
+      if (listenButton && audioPlayer) {
+        listenButton.addEventListener("click", () => {
+          audioPlayer.style.display = "block";
+
+          const audio = audioPlayer.querySelector("audio");
+
+          if (audio) {
+            audio.play();
+          }
+        });
+      }
+    </script>
+
+  </body>
+</html>
